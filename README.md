@@ -1,6 +1,6 @@
-# 这是本人的[力扣]( https://leetcode-cn.com/u/_axiu/ )刷题记录~将持续更新
+# 这是本人的[力扣]( https://leetcode-cn.com/u/_axiu/ )刷题记录~将持续更新，面向offer刷题
 
-# 目前已刷250+，70%+正确率~主刷medium与easy，hard只做经典的
+# 目前已刷250+，70%+正确率~主刷medium与easy，hard只做经典的.
 
 # 刷题顺序是按照标签刷，每个标签下又分为easy,medium以及hard三个等级~
 
