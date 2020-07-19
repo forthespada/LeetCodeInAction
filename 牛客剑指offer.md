@@ -12,93 +12,7 @@
 
 
 
-##### 
 
-
-
-
-
-#### 10、包含min函数的栈
-
-##### 1、一次解决 以前做过
-
-~~~C++
-class Solution {
-public:
-    void push(int value) {
-        if(st.size()==0&&minSt.size()==0) {
-            st.push(value);
-            minSt.push(value);
-        }else{
-            st.push(value);
-            if(value<=minSt.top()){
-                minSt.push(value);
-            }
-            else{
-                minSt.push(minSt.top());
-            }
-            
-        }
-        st.push(value);
-    }
-    void pop() {
-        st.pop();
-        minSt.pop();
-    }
-    int top() {
-        return st.top();
-    }
-    int min() {
-        return minSt.top();
-    }
-    stack<int> minSt;
-    stack<int> st;
-};
-~~~
-
-
-
-#### 11、栈的压入弹出序列 很好的题目
-
-##### 1、想岔了，用vector
-
-~~~C++
-    bool IsPopOrder(vector<int> pushV,vector<int> popV) {
-
-       if(pushV.size() == 0) return false;
-        vector<int> v;
-        for(int i = 0,j = 0 ;i < pushV.size();){
-            v.push_back(pushV[i++]);
-            while(j < popV.size() && v.back() == popV[j]){
-                v.pop_back();
-                j++;
-            }      
-            }
-            return v.empty();
-    }
-~~~
-
-##### 2、借助栈
-
-~~~C++
-    bool IsPopOrder(vector<int> pushV,vector<int> popV) {
-
-if (pushV.empty() || popV.empty() || pushV.size() != popV.size())
-	return false;
-	stack<int> s;
-	int j = 0;
-	for (int i = 0; i < pushV.size(); ++i) {
-		s.push(pushV[i]);
-		while (!s.empty() && s.top() == popV[j]) {
-			s.pop();
-			++j;
-		}
-	}
-	if (s.empty())
-		return true;
-	return false;
-    }
-~~~
 
 
 
@@ -1797,84 +1711,7 @@ int TreeDepth(TreeNode* pRoot)
 }
 ~~~
 
-##### 
-
-#### 37、二叉树的镜像
-
-##### 1、借助队列来做，跟上面一题中的迭代版本很像
-
-~~~C++
-void Mirror(TreeNode* pRoot) {
-	if (pRoot == nullptr) return;
-	queue<TreeNode*> q;
-	q.push(pRoot);
-	while (!q.empty()) {
-		TreeNode* node = q.front();
-		q.pop();
-		if (node)
-		{
-			q.push(node->left);
-			q.push(node->right);
-			swap(node->left, node->right);
-		}
-	}
-}
-~~~
-
-##### 2、不使用swap函数的迭代版本
-
-~~~C++
-void Mirror(TreeNode* pRoot) {
-	if (pRoot == nullptr) return;
-	queue<TreeNode*> q;
-	q.push(pRoot);
-	while (!q.empty()) {
-		TreeNode* node = q.front();
-		q.pop();
-		if (node)
-		{
-			q.push(node->left);
-			q.push(node->right);
-			//swap(node->left, node->right);
-			TreeNode* temp = node->left;
-			node->left = node->right;
-			node->right = temp;
-		}
-	}
-}
-~~~
-
-##### 3、递归版本
-
-~~~C++
-    void Mirror(TreeNode *pRoot) {
-	if (pRoot == nullptr) return;
-	TreeNode* temp = pRoot->left;
-	pRoot->left = pRoot->right;
-	pRoot->right = temp;
-	Mirror(pRoot->right);
-	Mirror(pRoot->left);
-    }
-~~~
-
-##### 4、栈的迭代版本
-
-~~~C++
-void Mirror(TreeNode* pRoot) {
-	if (pRoot == nullptr) return;
-	stack<TreeNode*> s;
-	s.push(pRoot);
-	while (!s.empty()) {
-		TreeNode* node = s.top();
-		s.pop();
-		if (node) {
-			s.push(node->left);
-			s.push(node->right);
-			swap(node->left, node->right);
-		}
-	}
-}
-~~~
+#### 
 
 #### 38、把二叉树打印成多行 ，跟二叉树的层次遍历差不多
 
@@ -2239,34 +2076,6 @@ TreeNode* Convert(TreeNode* pRootOfTree)
 
 
 
-#### 43、二叉搜索树的后序遍历序列
-
-输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
-
-##### 1、递归写法，树主要的做法就是递归
-
-~~~C++
-bool VerifySquenceOfBST(vector<int> sequence) {
-	if (sequence.empty() || sequence.size()== 0 )  return false;
-	if (sequence.size() == 1) return true;
-	return VerifySquenceOfBSTCore(sequence, 0, sequence.size()-1);
-}
-
-bool VerifySquenceOfBSTCore(vector<int>& sequence, int start, int end) {
-	if (start >= end) return true;
-	int low = start;
-	while (low < end && sequence[low] < sequence[end])  ++low;
-
-	for (int i = low; i < end; ++i) {
-		if (sequence[i] <= sequence[end]) return false;
-	}
-
-	return  VerifySquenceOfBSTCore(sequence, start,low-1) &&
-		VerifySquenceOfBSTCore(sequence, low,end-1);
-}
-
-~~~
-
 
 
 
@@ -2515,32 +2324,7 @@ vector<vector<int> > FindPath(TreeNode* root, int expectNumber) {
 
 
 
-#### 47、丛上往下打印二叉树
-
-从上往下打印出二叉树的每个节点，同层节点从左至右打印。
-
-##### 1、迭代做法，借助队列，比较简单
-
-~~~C++
-    vector<int> PrintFromTopToBottom(TreeNode* root) {
-
-    vector<int> result;
-	if (root == nullptr) return result;
-	queue<TreeNode*>  q;
-	q.push(root);
-	TreeNode* node;
-	while (!q.empty()) {
-		node = q.front();
-		result.push_back(node->val);
-		if (node->left) q.push(node->left);
-		if (node->right) q.push(node->right);
-		q.pop();
-	}
-    return result;
-    }
-~~~
-
-
+#### 
 
 #### 48、对称的二叉树
 
