@@ -14,59 +14,6 @@
 
 
 
-
-
-
-
-#### 11、连续子数组的最大和
-
-##### 1、直接在原数组上改，不借用任何内存
-
-~~~C++
-int FindGreatestSumOfSubArray(vector<int> array) {
-	for (int i = 1; i < array.size(); ++i) {
-	    array[i] = max(0,array[i-1]) + array[i];
-	}
-	return *max_element(array.begin(),array.end());
-}
-~~~
-
-##### 2、两个数字保存中间结果 或者一个数字
-
-~~~C++
-int FindGreatestSumOfSubArray(vector<int> array) {
- 
- 
-    int len = array.size();
-    int maxNum = array[0],result=maxNum;
-    for (int i = 1; i < len; ++i) {
-        if (maxNum + array[i] > array[i])
-            maxNum += array[i];
-        else
-            maxNum = array[i];
-        result = max(maxNum, result);
-    }
-    return result;
-}
-~~~
-
-
-
-~~~C++
-int FindGreatestSumOfSubArray(vector<int> array) {
-
-
-	int maxNum = array[0];
-	for (int i = 1; i <  array.size(); ++i) {
-	    array[i] = max(0,array[i-1]) + array[i];
-		maxNum = max(maxNum, array[i]);
-	}
-	return maxNum;
-}
-~~~
-
-
-
 #### 12、第N个丑数
 
 ##### 1、三指针法
@@ -130,6 +77,8 @@ vector < int > result(58,0);
 
 
 
+
+
 #### 14、数组中只出现一次的数字
 
 ##### 1、常规做法
@@ -161,6 +110,8 @@ vector < int > result(58,0);
 	}
     }
 ~~~
+
+
 
 
 
@@ -2702,51 +2653,6 @@ struct ListNode {
         return (LastRemaining_Solution(n-1,m)+m)%n;
     }
 ~~~
-
-#### 56、整数1出现的次数 好题
-
-求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）
-
-##### 1、经典方法吗，真的想不到这种方法，我服了，背吧
-
-在力扣上是双百
-
-执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户
-
-内存消耗：5.8 MB, 在所有 C++ 提交中击败了100.00%的用户
-
-~~~C++
- // 分两种情况，例如：1234和2234，high为最高位，pow为最高位权重
-	// 在每种情况下都将数分段处理，即0-999，1000-1999，...，剩余部分
-	// case1：最高位是1，则最高位的1的次数为last+1（1000-1234）
-	// 每阶段即0-999的1的个数1*countDigitOne(pow-1)
-	// 剩余部分1的个数为countDigitOne(last)--最高位已单独计算了
-	
-	// case2：最高位不是1，则最高位的1的次数为pow（1000-1999）
-	// 每阶段除去最高位即0-999，1000-1999中1的次数为high*countDigitOne(pow-1)
-	// 剩余部分1的个数为countDigitOne(last)
-	// 发现两种情况仅差别在最高位的1的个数，因此单独计算最高位的1（cnt），合并处理两种情况
- 
- 
- int NumberOf1Between1AndN_Solution(int n)
-    {
-    if (n <= 0) return 0;
-	if (n < 10) return 1;
-	int high = n, pow = 1;// // 取出最高位 以及 最高位的权重
-	while (high >= 10) {
-		high /= 10;
-		pow *= 10;
-	}
-	int last = n - high * pow;// 除最高位的数字
-	int cnt = high == 1 ? last + 1 : pow;// high是否为1，最高位的1个数不同
-	return cnt + high * NumberOf1Between1AndN_Solution(pow - 1) + NumberOf1Between1AndN_Solution(last);
-
-    }
-~~~
-
-
-
-
 
 
 
