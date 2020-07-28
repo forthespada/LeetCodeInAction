@@ -36,71 +36,6 @@
 
 
 
-
-
-#### 16、返回两个链表中的第一个公共节点
-
-##### 1、暴力遍历法
-
-~~~C++
-ListNode* FindFirstCommonNode(ListNode* pHead1, ListNode* pHead2) {
-	if (pHead1 == NULL || pHead2 == NULL) return NULL;
-	ListNode* node = (ListNode*)malloc(sizeof(ListNode));	
-	while (pHead1 != NULL) {
-
-		node = pHead2;
-		while (node != NULL) {
-			//cout << "node " << node->val << " phead1 " << pHead1->val << endl;
-			if (node == pHead1) return node;
-			else
-				node = node->next;
-		}
-		//cout << endl;
-		pHead1 = pHead1->next;
-
-	}
-	return NULL;
-}
-~~~
-
-
-
-##### 2、大神写法  太厉害了，真的佩服
-
-
-
-朋友们，请一定要珍惜身边的那个 ta 啊！你们之所以相遇，正是因为你走了 ta 走过的路，而 ta 也刚好走了你走过的路。这是何等的缘分！
-
-而当你们携手继续走下去时，你会慢慢变成 ta 的样子，ta 也会慢慢变成你的样子。
-
-
-
-a.长度相同的：1. 有公共结点的，第一次就遍历到；2. 没有公共结点的，走到尾部NULL相遇，返回NULL；
-b.长度不同的：1. 有公共结点的，第一遍差值就出来了，第二遍就会一起到公共结点；2. 没有公共结点的，第二次遍历一起到结尾NULL。  
-
-~~~C++
-
-//定义两个指针, 第一轮让两个到达末尾的节点指向另一个链表的头部, 最后如果相遇则为交点(在第一轮移动中恰好抹除了长度差)
-        两个指针等于移动了相同的距离, 有交点就返回, 无交点就是各走了两条指针的长度
-ListNode* FindFirstCommonNode(ListNode* pHead1, ListNode* pHead2) {
-	if (pHead1 == NULL || pHead2 == NULL) return NULL;
-	ListNode* p1 = (ListNode*)malloc(sizeof(ListNode));
-	ListNode* p2 = (ListNode*)malloc(sizeof(ListNode));
-	p1 = pHead1;
-	p2 = pHead2;
-	while (p1 != p2) {
-		p1 = (p1 == NULL ? pHead2 : p1->next);
-		p2 = (p2 == NULL ? pHead1 : p2->next);
-	}
-	return p1;
-}
-
-~~~
-
-
-
-
-
 #### 17、整值的整数次方
 
 要分正负的
@@ -1446,45 +1381,7 @@ bool hasPath(char* matrix, int rows, int cols, char* str)
 }
 ~~~
 
-#### 36、二叉树的深度
 
-输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
-
-##### 1、BFS，迭代版本
-
-~~~C++
-int TreeDepth(TreeNode* pRoot)
-{
-	if (pRoot == nullptr) return 0;
-	queue<pair<TreeNode*, int>> q;
-	q.push(make_pair(pRoot, 1));
-	int maxDept = 1;
-	while (!q.empty()) {
-		TreeNode* curNode = q.front().first;
-		int curDepth = q.front().second;
-		q.pop();
-		if (curNode) {
-			maxDept = max(maxDept, curDepth);
-			q.push({ curNode->left,curDepth + 1 });
-			q.push({ curNode->right,curDepth + 1 });
-		}
-	}
-	return maxDept;
-}
-~~~
-
-##### 2、递归法
-
-~~~C++
-int TreeDepth(TreeNode* pRoot)
-{
-	if (pRoot == nullptr) return 0;
-	int leftDept = TreeDepth(pRoot->left) + 1, rightDept = TreeDepth(pRoot->right) + 1;
-	return max(leftDept, rightDept);
-}
-~~~
-
-#### 
 
 #### 38、把二叉树打印成多行 ，跟二叉树的层次遍历差不多
 
