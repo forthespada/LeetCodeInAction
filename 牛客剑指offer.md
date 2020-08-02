@@ -1,40 +1,4 @@
-#### 14、数组中只出现一次的数字
-
-##### 1、常规做法
-
-~~~C++
-    void FindNumsAppearOnce(vector<int> data,int* num1,int *num2) {
-	unordered_map<int, int> unmp;
-	for (int i = 0; i < data.size(); ++i) {
-			unmp[data[i]] += 1;
-	}
-
-
-	auto it = unmp.begin();
-	while (it != unmp.end()) {
-		if (it->second == 1) {
-			*num1 = it->first;
-			++it;
-			break;
-		}
-		++it;
-	}
-
-	while (it != unmp.end()) {
-		if (it->second == 1) {
-			*num2 = it->first;
-			break;
-		}
-		++it;
-	}
-    }
-~~~
-
-
-
-
-
-
+#### 
 
 #### 17、整值的整数次方
 
@@ -1410,61 +1374,6 @@ vector<vector<int> > Print(TreeNode* pRoot) {
 	return result;
 }
 ~~~
-
-#### 39、平衡二叉树
-
-输入一棵二叉树，判断该二叉树是否是平衡二叉树。
-
-在这里，我们只需要考虑其平衡性，不需要考虑其是不是排序二叉树
-
-##### 1、暴力法，笨方法
-
-最直接的做法，遍历每个结点，借助一个获取树深度的递归函数，根据该结点的左右子树高度差判断是否平衡，然后递归地对左右子树进行判断。
-
-~~~C++
-int maxDepth(TreeNode* node) {
-
-	if (node == nullptr)  return 0;
-	return 1 + max(maxDepth(node->left), maxDepth(node->right));
-}
-
-bool IsBalanced_Solution(TreeNode* pRoot) {
-	if (pRoot == nullptr) return true;//这里是返回true 而不再是false
-	return abs(maxDepth(pRoot->left) - maxDepth(pRoot->right)) <= 1 &&
-		IsBalanced_Solution(pRoot->left) && IsBalanced_Solution(pRoot->right);
-}
-~~~
-
-return 后面不需要加两个&&来递归他左子树和右子树. 这样想, 有一个函数得到了他的深度, 那么只要根的左子树和右子树深度不超过1就可以了.  后面判断的没有什么必要
-
-##### 2、改进版，很好的方法，只遍历一次，画个二叉树就知道了
-
- 上面这种做法有很明显的问题，在判断上层结点的时候，会多次重复遍历下层结点，增加了不必要的开销。如果改为从下往上遍历，如果子树是平衡二叉树，则返回子树的高度；如果发现子树不是平衡二叉树，则直接停止遍历，这样至多只对每个结点访问一次。  
-
-~~~C++
-int getDepth(TreeNode* node) {
-
-	if (node == nullptr)  return 0;
-	int leftDept = getDepth(node->left);
-	if (leftDept == -1) return -1;
-	int rightDept = getDepth(node->right);
-	if (rightDept == -1) return -1;
-	if (abs(leftDept - rightDept) > 1) 
-		return -1;
-	else
-		return 1 + max(leftDept,rightDept);
-}
-
-bool IsBalanced_Solution(TreeNode* pRoot) {
-	if (pRoot == nullptr) return true;//这里是返回true 而不再是false
-	return getDepth(pRoot)!=-1;
-}
-
-~~~
-
-
-
-这种做法有很明显的问题，在判断上层结点的时候，会多次重复遍历下层结点，增加了不必要的开销。如果改为从下往上遍历，如果子树是平衡二叉树，则返回子树的高度；如果发现子树不是平衡二叉树，则直接停止遍历，这样至多只对每个结点访问一次。  
 
 
 
