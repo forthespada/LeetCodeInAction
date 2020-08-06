@@ -1,4 +1,4 @@
-#### 
+
 
 #### 17、整值的整数次方
 
@@ -18,82 +18,6 @@
           return dtemp;
         else
           return 1.0/dtemp;
-    }
-~~~
-
-
-
-
-
-#### 18、和为S的连续整数序列  好题
-
-##### 1、牛客解法，很厉害。类似于TCP滑动窗口
-
-~~~C++
-    vector<vector<int> > FindContinuousSequence(int sum) {
-        vector<vector<int>> result;
-        int low=1,high=2;//两个起点，相当于动态窗口的两边，根据其窗口内的值的和来确定窗口的位置和大小
-        while(low<high){
-            int sumTemp = (low+high) *(high-low +1)/2;
-             //由于是连续的，差为1的一个序列，那么求和公式是(a0+an)*n/2
-            if(sumTemp == sum){  //相等，那么就将窗口范围的所有数添加进结果集
-                vector<int> resultTemp;
-                for(int i=low;i<=high;++i)
-                {resultTemp.push_back(i);}
-                result.push_back(resultTemp);
-                low++;
-            }else if(sumTemp<sum){ //如果当前窗口内的值之和小于sum，那么右边窗口右移一下
-                high++;
-            }
-            else{  //如果当前窗口内的值之和大于sum，那么左边窗口右移一下
-                low++;
-            }
-        }
-        return result;
-    }
-~~~
-
-##### 2、暴力解法
-
-~~~C++
-    vector<vector<int> > FindContinuousSequence(int sum) {
-	vector<vector<int> > result;
-	for (int n = sqrt(2 * sum); n >= 2; --n) {
-		if (((n & 1) == 1 && sum % n == 0) || (sum % n * 2 == n)) {
-			vector<int> res;
-			//j用于计数，k用于遍历求值
-			for (int j = 0, k = sum / n - (n - 1) / 2; j < n; j++, k++)//注意看k的求法
-				res.push_back(k);
-			result.push_back(res);
-		}
-	}
-	return result;
-    }
-
-~~~
-
-#### 19、和为S的两个数字
-
-##### 1、很简单的一个问题
-
-~~~C++
-    vector<int> FindNumbersWithSum(vector<int> array,int sum) {        
-        vector<int>  result;
-	if (array.size() == 0)  return result;
-	int low = 0, high = array.size() - 1;
-	
-	while (low <= high) {
-		if (array[low] + array[high] == sum) {
-			result.push_back(array[low]);
-			result.push_back(array[high]);
-			return result;
-		}
-		else if (array[low] + array[high] < sum)  low++;
-		else {
-			high--;
-		}
-	}
-	return result;
     }
 ~~~
 
