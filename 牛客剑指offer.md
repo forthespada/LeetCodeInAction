@@ -25,36 +25,7 @@
 
 
 
-#### 20、左旋字符串
-
-##### 1、我真的是太傻比了，其实很容易的
-
-~~~C++
- string LeftRotateString(string str, int n) {
-	int len = str.size();
-    if(len==0) return str;//考虑str为空
-	if (n >= len) n = n % len;//考虑n比str的长度还要大的情况下
-	string temp = str + str;
-	string result;
-	result.resize(len);
-	for (int i = n,index=0; i <len+n; ++i,++index) {
-		result[index] = temp[i];
-	}
-	return result;
-    }
-~~~
-
-##### 2、精简做法
-
-~~~C++
-    string LeftRotateString(string str, int n) {
-	int len = str.size();
-    if(len==0) return str;
-	if (n >= len) n = n % len;
-	str += str;
-	return str.substr(n,len);
-    }
-~~~
+#### 
 
 #### 21、反转单词序列
 
