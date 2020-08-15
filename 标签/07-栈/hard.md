@@ -43,8 +43,6 @@ https://blog.csdn.net/Zolewit/article/details/88863970
 
 
 
-
-
 ```c++
 
 int largestRectangleArea(vector<int>& heights) {
@@ -189,7 +187,7 @@ int largestRectangleArea(vector<int>& heights) {
 
 ### [85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/)
 
-难度困难496收藏分享切换为英文关注反馈
+
 
 给定一个仅包含 0 和 1 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。
 
@@ -259,10 +257,6 @@ public:
 
 
 ### [316. 去除重复字母](https://leetcode-cn.com/problems/remove-duplicate-letters/)  真的没看懂，不过很经典
-
-
-
-
 
 给定一个仅包含小写字母的字符串，去除字符串中重复的字母，使得每个字母只出现一次。需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。
 
