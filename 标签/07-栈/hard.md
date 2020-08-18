@@ -185,6 +185,39 @@ int largestRectangleArea(vector<int>& heights) {
 
 
 
+#### 二刷：
+
+~~~cpp
+    int largestRectangleArea(vector<int>& heights) {
+        int len = heights.size();
+        if(len == 0) return 0;
+        if(len == 1) return heights[0];
+        int maxArea = -1, bound = 0;
+        vector<int> left(len,0), right(len,0);
+        for(int i = 0; i <= len-1; ++i){
+            bound = i;
+            while(bound >=1 && heights[bound - 1] >= heights[i]) bound = left[bound - 1];
+            left[i] = bound;
+
+        }
+
+        for(int i = len - 1; i >= 0; --i){
+            bound = i;
+            while(bound <len - 1 && heights[bound + 1] >=heights[i]) bound = right[bound + 1];
+            right[i] = bound;
+
+        }
+
+        for(int i = 0; i < len; ++i){
+            maxArea = max(maxArea,(right[i] - left[i] +1 ) * heights[i]);
+        }
+
+        return maxArea;
+    }
+~~~
+
+
+
 ### [85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/)
 
 
