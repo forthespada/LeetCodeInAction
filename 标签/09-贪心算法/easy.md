@@ -181,10 +181,6 @@ int lastStoneWeight(vector<int>& stones) {
 
 
 
-
-
-
-
 ### [1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/)   好题，真的好题
 
 有一堆石头，每块石头的重量都是正整数。

@@ -476,6 +476,98 @@ int minPathSum(vector<vector<int>>& grid) {
 
 
 
+### [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
+
+难度中等776收藏分享切换为英文关注反馈
+
+给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 `-1`。
+
+ 
+
+**示例 1:**
+
+```
+输入: coins = [1, 2, 5], amount = 11
+输出: 3 
+解释: 11 = 5 + 5 + 1
+```
+
+**示例 2:**
+
+```
+输入: coins = [2], amount = 3
+输出: -1
+```
+
+ 
+
+**说明**:
+你可以认为每种硬币的数量是无限的。
+
+
+
+#### 1、经典DP，好好想想
+
+
+
+执行用时：148 ms, 在所有 C++ 提交中击败了39.78%的用户
+
+内存消耗：14 MB, 在所有 C++ 提交中击败了59.87%的用户
+
+~~~cpp
+    int coinChange(vector<int>& coins, int amount) {
+
+
+        vector<int> dp(amount + 1, amount + 1);
+        dp[0] = 0;
+       
+        for(int i = 0; i <= amount; ++i){
+                for(auto coin:coins){
+                    if(i < coin) continue;
+                    dp[i] = min(dp[i], 1 + dp[i - coin]);
+
+                }
+        }
+
+        return dp[amount] == amount+1?-1:dp[amount];
+    }
+~~~
+
+
+
+
+
+#### 2、稍微优化一下
+
+执行用时：140 ms, 在所有 C++ 提交中击败了48.87%的用户
+
+内存消耗：14.4 MB, 在所有 C++ 提交中击败了15.72%的用户
+
+~~~cpp
+    int coinChange(vector<int>& coins, int amount) {
+
+
+        vector<int> dp(amount + 1, amount + 1);
+        dp[0] = 0;
+        sort(coins.begin(), coins.end());       
+        for(int i = 0; i <= amount; ++i){
+                for(auto coin:coins){
+                    if(i < coin) break;
+                    dp[i] = min(dp[i], 1 + dp[i - coin]);
+
+                }
+        }
+
+        return dp[amount] == amount+1?-1:dp[amount];
+    }
+~~~
+
+
+
+
+
+
+
 ### [712. 两个字符串的最小ASCII删除和](https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/)
 
 给定两个字符串s1, s2，找到使两个字符串相等所需删除字符的ASCII值的最小和。
@@ -2910,4 +3002,8 @@ int numSubmat(vector<vector<int>>& mat) {
 
     }
 ~~~
+
+
+
+
 
