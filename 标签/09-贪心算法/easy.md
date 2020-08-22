@@ -489,15 +489,9 @@ int minCostToMoveChips(vector<int>& chips) {
 
 以costs[0]-costs[1]的差值从小到大排列，前一半去A，后一半去B
 
-```
-
-```
-
 执行用时 :4 ms, 在所有 cpp 提交中击败了96.28%的用户
 
 内存消耗 :9.3 MB, 在所有 cpp 提交中击败了100.00%的用户
-
-
 
 ```c++
 static bool compare(const vector<int>& a,const vector<int>& b) {

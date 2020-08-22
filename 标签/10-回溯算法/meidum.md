@@ -51,7 +51,7 @@ void combinationSumCore(vector<vector<int>>& res, vector<int>& candidates, int t
 		for (int i = begin; i < candidates.size(); ++i) {
 			if (sum + candidates[i] <= target) {
 				tmp.push_back(candidates[i]);
-				combinationSumCore(res, candidates, target, tmp, sum + candidates[i], i);
+				combinationumCore(res, candidates, target, tmp, sum + candidates[i], i);
 				tmp.pop_back();
 			}else{
 				return;
@@ -326,7 +326,7 @@ void subsetsCore(vector<int>& nums, vector<vector<int>>& result, vector<int>&tem
 	for (int i = index; i < nums.size(); ++i)//index的起始点表示选择列表的范围
 	{
 			temp.push_back(nums[i]);
-			subsetsCore(nums, result, temp, i + 1);//这里是 i 而不是 index 因为一到尾巴就算完事了
+			subsetsCore(nums, result, temp, i + 1);//这里是 i 而不是 index， 因为一到尾巴就算完事了
 			temp.pop_back();
 	}
 }
