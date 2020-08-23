@@ -637,6 +637,49 @@ int minPathSum(vector<vector<int>>& grid) {
 
 
 
+#### 2、自己写的和总结的，万字精髓所在啊
+
+执行用时：40 ms, 在所有 C++ 提交中击败了34.43%的用户
+
+内存消耗：18.5 MB, 在所有 C++ 提交中击败了19.57%的用户
+
+~~~cpp
+int change(int amount, vector<int>& coins) {
+
+	int len = coins.size();
+	vector<vector<int>> dp(len + 1, vector<int>(amount + 1, 0));// dp[i][j] 只有 i 种货币，而金额有 j的时候，可以兑换的组合数
+	for (int i = 0; i <= len; ++i) {//当金额只有 0 的时候，什么组合也没有，所以就是啥都不选的情况下，啥都不选也就是那唯一的一次选择
+		dp[i][0] = 1;
+	}
+
+	//for (int i = 0; i <= amount; ++i) {//当没有硬币的时候，不管钱有多少
+	//	dp[0][i] = 0;
+
+	//}//这一步最好不要，因为当输入amount = 0,coins = [] 的时候，本来应该是输出为1的，也就是上面那种结果，现在又赋值一次，把1覆盖掉，变成0了
+
+	for (int i = 1; i <= len; ++i) {
+		int coin = coins[i - 1];//此时的硬币数
+		for (int j = 1; j <= amount; ++j) {
+			if (coin > j) {//此时的硬币面额大于拥有的金额数，比如我又1块的隐蔽，但是你只有1毛钱，这就没办法组合
+				dp[i][j] = dp[i - 1][j];
+
+			}
+			else {//此时硬币面额小于拥有的钱数，此时的可能性有多少种呢，
+				//1，上一个j金额时的可能性，也就是d[i-1][j]的时候，2、上一个钱不太够的时候也就是dp[i][j-coin]
+				// 那么加起来就是dp[i][j]的全部可能性了
+				dp[i][j] = dp[i-1][j] + dp[i][j - coin];
+			}
+
+		}
+	}
+
+
+	return dp[len][amount];
+
+
+}
+~~~
+
 
 
 ### [712. 两个字符串的最小ASCII删除和](https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/)
@@ -1384,6 +1427,37 @@ int longestCommonSubsequence(string text1, string text2) {
 
 
 
+##### 二刷：
+
+执行用时：32 ms, 在所有 C++ 提交中击败了64.01%的用户
+
+内存消耗：12.9 MB, 在所有 C++ 提交中击败了51.16%的用户
+
+~~~cpp
+    int longestCommonSubsequence(string text1, string text2) {
+	int len1 = text1.size(), len2 = text2.size();
+	if (len1 == 0 || len2 == 0) return 0;
+	vector<vector<int>> dp(len1+1, vector<int>(len2+1, 0));// 以 dp[i][j] 以 text1【i】和text2[j]为结尾的字符串的长度最长公共子序列为多长
+	for (int i = 1; i <= len1; ++i) {
+		for (int j = 1; j <= len2; ++j) {
+
+			if (text1[i-1] != text2[j-1])
+			{
+				dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+			}
+			else {//当前元素相同
+
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+			}	
+		}
+	}
+	
+	return dp[len1][len2];
+    }
+~~~
+
+
+
 
 
 ### [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/)  非常经典的DP问题
@@ -1467,7 +1541,13 @@ exection -> execution (插入 'u')
   问题拆解那里其实说的比较清楚了，这里需要把之前的描述写成表达式的形式：
 
   ```
-  str1(i) == str2(j):dp[i][j] = dp[i - 1][j - 1]tip: 这里不需要考虑 dp[i - 1][j] 以及 dp[i][j - 1]，因为   dp[i - 1][j - 1] <= dp[i - 1][j] +1 && dp[i - 1][j - 1] <= dp[i][j - 1] + 1str1(i) != str2(j):dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][i - 1]) + 1
+  str1(i) == str2(j):
+  dp[i][j] = dp[i - 1][j - 1]
+  tip: 这里不需要考虑 dp[i - 1][j] 以及 dp[i][j - 1]，
+  因为dp[i - 1][j - 1] <= dp[i - 1][j] +1 && dp[i - 1][j - 1] <= dp[i][j - 1] + 1
+  
+  str1(i) != str2(j):
+  dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][i - 1]) + 1
   ```
 
   你可以看到**字符之间比较的结果永远是递推的前提**
@@ -1575,7 +1655,7 @@ int minDistance(string word1, string word2) {
 
 ### [139. 单词拆分](https://leetcode-cn.com/problems/word-break/)
 
-难度中等574收藏分享切换为英文关注反馈
+
 
 给定一个**非空**字符串 *s* 和一个包含**非空**单词列表的字典 *wordDict*，判定 *s* 是否可以被空格拆分为一个或多个在字典中出现的单词。
 
@@ -1730,10 +1810,6 @@ wordDict = ["cats", "dog", "sand", "and", "cat"]
 
 
 #### 1、这是真的不会，看了答案也不会
-
-
-
-
 
 ~~~cpp
 //回溯+剪枝，利用一个map保留键值映射，想相当于加入剪枝操作，可以对之前计算过的避免重复计算，进而加速计算过程。
