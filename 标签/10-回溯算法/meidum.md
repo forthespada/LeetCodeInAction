@@ -288,6 +288,101 @@ vector<vector<int>> permuteUnique(vector<int>& nums)
 
 
 
+
+
+
+
+#### [面试题 08.08. 有重复字符串的排列组合](https://leetcode-cn.com/problems/permutation-ii-lcci/)
+
+
+
+有重复字符串的排列组合。编写一种方法，计算某字符串的所有排列组合。
+
+**示例1:**
+
+```
+ 输入：S = "qqe"
+ 输出：["eqq","qeq","qqe"]
+```
+
+**示例2:**
+
+```
+ 输入：S = "ab"
+ 输出：["ab", "ba"]
+```
+
+**提示:**
+
+1. 字符都是英文字母。
+2. 字符串长度在[1, 9]之间。
+
+
+
+##### 0、直接用next_permutation函数来做就可以，但是要记得先排序，而且是必须排序才可以
+
+执行用时：4 ms, 在所有 C++ 提交中击败了94.10%的用户
+内存消耗：7.2 MB, 在所有 C++ 提交中击败了66.42%的用户
+
+~~~cpp
+
+	vector<string> permutation(string S) {
+
+	vector<string> result;
+
+	sort(S.begin(), S.end());
+	do {
+		result.push_back(S);
+	} while (next_permutation(S.begin(), S.end()));
+	return result;
+	}
+~~~
+
+
+
+
+
+
+##### 1、回溯
+
+执行用时：16 ms, 在所有 C++ 提交中击败了38.23%的用户
+
+内存消耗：8.3 MB, 在所有 C++ 提交中击败了14.18%的用户
+
+~~~cpp
+void permutationCore(vector<string>& result, int index, string &S) {
+	if (index == S.size()) {
+		result.push_back(S);
+		return;
+	}
+	unordered_map<char, int> unmp;
+	for (int i = index; i < S.size(); ++i) {
+		if (unmp[S[i]] >0)
+		
+			continue;
+		std::swap(S[index], S[i]);
+		
+		permutationCore(result, index + 1, S);
+		std::swap(S[i], S[index]);
+		unmp[S[i]]++;
+	}
+}
+
+
+
+vector<string> permutation(string S) {
+	vector<string> result;
+	sort(S.begin(), S.end());
+	permutationCore(result, 0, S);
+	return result;
+
+}
+~~~
+
+
+
+
+
 #### [78. 子集](https://leetcode-cn.com/problems/subsets/)
 
 
