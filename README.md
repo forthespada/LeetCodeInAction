@@ -2,7 +2,7 @@
 
 # 剑指offer目前正在二刷ing
 
-# 力扣目前已刷260+，70%+正确率~主刷medium与easy，hard只做经典的
+# 力扣目前已刷300+，74%+正确率~主刷medium与easy，hard只做经典的 
 
 # 刷题顺序是按照标签刷，每个标签下又分为easy,medium以及hard三个等级~
 
