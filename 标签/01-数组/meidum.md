@@ -36,7 +36,7 @@
 
 
 
-执行用时 :1640 ms, 在所有 C++ 提交中击败了9.51%的用户
+执行用时 :160 ms, 在所有 C++ 提交中击败了99.51%的用户
 
 内存消耗 :9.9 MB, 在所有 C++ 提交中击败了65.57%的用户
 
@@ -97,19 +97,11 @@ https://leetcode-cn.com/problems/container-with-most-water/solution/sheng-zui-du
 时间复杂度 O(N)O(N)，双指针遍历一次底边宽度 NN 。
 空间复杂度 O(1)O(1)，指针使用常数额外空间。
 
-![1569632554576](C:\Users\forth\AppData\Roaming\Typora\typora-user-images\1569632554576.png)
 
 
 
-
-
-
-
-- 
 
 #### [1497. 检查数组对是否可以被 k 整除](https://leetcode-cn.com/problems/check-if-array-pairs-are-divisible-by-k/)
-
-
 
 给你一个整数数组 `arr` 和一个整数 `k` ，其中数组长度是偶数，值为 `n` 。
 
@@ -169,7 +161,7 @@ https://leetcode-cn.com/problems/container-with-most-water/solution/sheng-zui-du
 
 
 
-##### 1，贪心 + 取余做法
+##### 1、贪心 + 取余做法
 
 思路:错误想法,找到两个之和整除,这样可能找不全
 正确思路:对数组每个数求余,负数就得+k,然后统计每个余数的数量
