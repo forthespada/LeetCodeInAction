@@ -1,8 +1,10 @@
-![](https://gitee.com/ForthEspada/image/raw/master/image/202202131510867.png)
+<p align="center">
+  <a href="https://github.com/forthespada/LeetCodeInAction" target="_blank">
+  <img src="https://gitee.com/ForthEspada/image/raw/master/image/202202131510867.png"  alt="loading">
+  </a>
+</p>
 
 > 坚持面向offer刷题
-
-![](https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png)
 
 **1、个人背景**
 
@@ -10,7 +12,7 @@
 
 我的秋招总结文章：**[双非学生的秋招之路总结（已拿抖音研发岗SP）](https://mp.weixin.qq.com/s/AYe3tnuOmqR4jdDndDGW-Q)**
 
-我的秋招求职笔记：[阿秀的校招求职笔记，适合三年以内的社招党以及校招同学](https://github.com/forthespada/InterviewGuide)
+我的秋招求职笔记：**[阿秀的校招求职笔记，适合三年以内的社招党以及校招同学](https://interviewguide.cn/#/)**   [**推荐使用网站学习**](https://interviewguide.cn/#/)   
 
 我的前期学习路线：**[适合有基础的科班选手的C++学习路线](http://mp.weixin.qq.com/s?__biz=Mzg2MDU0ODM3MA==&mid=2247483953&idx=1&sn=a0a6b338185bfee8e3538bdfbf58e55c&chksm=ce25fe4cf952775a519c82f0f6e208f5762c97ed11511670ebec6c21cacd575af74e49397969&scene=21#wechat_redirect)  [小白求职版学习路线](https://mp.weixin.qq.com/s/3pcENm2--dVWksNjvtCTcQ)**
 
@@ -32,119 +34,179 @@
 
 每道题后面都有一些个人的笔记和想法以及需要注意的地方，欢迎fork & star。
 
+<p align="center">
+  <img src="  https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png"  alt="loading">
+</p>
+
 # 力扣
 
 ## 01-数组
 
-[easy](标签/01-数组/easy.md)
+### [easy](标签/01-数组/easy.md)
 
-[medium](标签/01-数组/medium.md)
+- [414. 第三大的数](标签/01-数组/easy.md#第三大的数)   很不错的题目
 
-[hard](标签/01-数组/hard.md)
+更多....
+
+### [medium](标签/01-数组/medium.md)
+
+更多....
+
+### [hard](标签/01-数组/hard.md)
+
+更多....
 
 ## 02-字符串
 
-[easy](标签/02-字符串/easy.md)
+### [easy](标签/02-字符串/easy.md)
 
-[medium](标签/02-字符串/medium.md)
+更多....
 
-[hard](标签/02-字符串/hard.md)
+### [medium](标签/02-字符串/medium.md)
+
+更多....
+
+### [hard](标签/02-字符串/hard.md)
+
+更多....
 
 ## 03-链表
 
-[easy](标签/03-链表/easy.md)
+### [easy](标签/03-链表/easy.md)
 
-[medium](标签/03-链表/medium.md)
+更多....
 
-[hard](标签/03-链表/hard.md)
+### [medium](标签/03-链表/medium.md)
+
+更多....
+
+### [hard](标签/03-链表/hard.md)
+
+更多....
 
 ## 04-数学
 
-[easy](标签/04-数学/easy.md)
+### [easy](标签/04-数学/easy.md)
 
-[medium](标签/04-数学/medium.md)
+更多....
 
-[hard](标签/04-数学/hard.md)
+### [medium](标签/04-数学/medium.md)
+
+更多....
+
+### [hard](标签/04-数学/hard.md)
+
+更多....
 
 ## 05-哈希表
 
-[easy](标签/05-哈希表/easy.md)
+### [easy](标签/05-哈希表/easy.md)
 
-[medium](标签/05-哈希表/medium.md)
+更多....
 
-[hard](标签/05-哈希表/hard.md)
+### [medium](标签/05-哈希表/medium.md)
+
+更多....
+
+### [hard](标签/05-哈希表/hard.md)
+
+更多....
 
 ## 06-二分查找
 
-[easy](标签/06-二分查找/easy.md)
+### [easy](标签/06-二分查找/easy.md)
 
-[medium](标签/06-二分查找/medium.md)
+### [medium](标签/06-二分查找/medium.md)
 
-[hard](标签/06-二分查找/hard.md)
+### [hard](标签/06-二分查找/hard.md)
 
 ## 07-栈
 
-[easy](标签/07-栈/easy.md)
+### [easy](标签/07-栈/easy.md)
 
-[medium](标签/07-栈/medium.md)
+### [medium](标签/07-栈/medium.md)
 
-[hard](标签/07-栈/hard.md)
+### [hard](标签/07-栈/hard.md)
 
 ## 08-双指针
 
-[easy](标签/08-双指针/easy.md)
+### [easy](标签/08-双指针/easy.md)
 
-[medium](标签/08-双指针/medium.md)
+### [medium](标签/08-双指针/medium.md)
 
-[hard](标签/08-双指针/hard.md)
+### [hard](标签/08-双指针/hard.md)
 
 ## 09-贪心算法
 
-[easy](标签/09-贪心算法/easy.md)
+### [easy](标签/09-贪心算法/easy.md)
 
-[medium](标签/09-贪心算法/medium.md)
+### [medium](标签/09-贪心算法/medium.md)
 
-[hard](标签/09-贪心算法/hard.md)
+### [hard](标签/09-贪心算法/hard.md)
 
 ## 10-回溯算法
 
-[easy](标签/10-回溯算法/easy.md)
+### [easy](标签/10-回溯算法/easy.md)
 
-[medium](标签/10-回溯算法/medium.md)
+更多....
 
-[hard](标签/10-回溯算法/hard.md)
+### [medium](标签/10-回溯算法/medium.md)
+
+更多....
+
+### [hard](标签/10-回溯算法/hard.md)
+
+更多....
 
 ## 11-动态规划
 
-[easy](标签/11-动态规划/easy.md)
+### [easy](标签/11-动态规划/easy.md)
 
-[medium](标签/11-动态规划/medium.md)
+### [medium](标签/11-动态规划/medium.md)
 
-[hard](标签/11-动态规划/hard.md)
+### [hard](标签/11-动态规划/hard.md)
 
 ## 12-广度优先搜索(BFS)
 
-[easy](标签/12-BFS/easy.md)
+### [easy](标签/12-BFS/easy.md)
 
-[medium](标签/12-BFS/medium.md)
+更多....
 
-[hard](标签/12-BFS/hard.md)
+### [medium](标签/12-BFS/medium.md)
+
+更多....
+
+### [hard](标签/12-BFS/hard.md)
+
+更多....
 
 ## 13-深度优先搜索(DFS)
 
-[easy](标签/13-DFS/easy.md)
+### [easy](标签/13-DFS/easy.md)
 
-[medium](标签/13-DFS/medium.md)
+更多....
 
-[hard](标签/13-DFS/hard.md)
+### [medium](标签/13-DFS/medium.md)
+
+更多....
+
+### [hard](标签/13-DFS/hard.md)
+
+更多....
 
 ## 14-树
 
-[easy](标签/14-树/easy.md)
+### [easy](标签/14-树/easy.md)
 
-[medium](标签/14-树/medium.md)
+更多....
 
-[hard](标签/14-树/hard.md)
+### [medium](标签/14-树/medium.md)
+
+更多....
+
+### [hard](标签/14-树/hard.md)
+
+更多....
 
 # 剑指offer
 
