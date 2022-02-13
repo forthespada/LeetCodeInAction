@@ -35,7 +35,7 @@
 
 更多的则是自己在刷题工程中的个人笔记和想法以及需要注意的地方，欢迎fork & star。
 
-> 上班狗一枚，闲余时间慢慢整理自己的笔记，速度较慢，莫催~
+> 上班狗一枚，闲余时间慢慢整理自己的笔记，有些算法题暂时没链接到以前的笔记上，还需要慢慢check，整理速度较慢，见谅~
 
 <p align="center">
   <img src="https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png"  alt="loading">
