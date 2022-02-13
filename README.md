@@ -35,8 +35,16 @@
 每道题后面都有一些个人的笔记和想法以及需要注意的地方，欢迎fork & star。
 
 <p align="center">
-  <img src="  https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png"  alt="loading">
+  <img src="https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png"  alt="loading">
 </p>
+
+<!--
+
+[414. 第三大的数](标签/01-数组/easy.md#第三大的数)   很不错的题目
+
+- [一刷](标签/01-数组/easy.md#第一版第三大的数)
+
+-->
 
 # 力扣
 
@@ -45,6 +53,11 @@
 ### [easy](标签/01-数组/easy.md)
 
 - [414. 第三大的数](标签/01-数组/easy.md#第三大的数)   很不错的题目
+  - [一刷](标签/01-数组/easy.md#第一版第三大的数)
+- [581. 最短无序连续子数组](标签/01-数组/easy.md#最短无序连续子数组)  很经典的题目，very nice
+  - [一刷](标签/01-数组/easy.md#第一版最短无序连续子数组)
+  - [二刷](第二版最短无序连续子数组)
+  - [三刷](第三版最短无序连续子数组)
 
 更多....
 

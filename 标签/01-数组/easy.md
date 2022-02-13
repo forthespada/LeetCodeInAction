@@ -37,7 +37,7 @@
 
 
 
-#### 第一版，有参考
+#### 第一版第三大的数，有参考
 
 执行用时 :4 ms, 在所有 cpp 提交中击败了99.23%的用户
 
@@ -95,7 +95,7 @@
 
 
 
-#### 第一版，参考别人的思路
+#### 第一版最短无序连续子数组，参考别人的思路
 
 从左到右循环，记录最大值为 max，若 nums[i] < max, 则表明位置 i 需要调整，记录需要调整的最大位置 i 为 low; 同理，从右到左循环，记录最小值为 min, 若 nums[i] > min, 则表明位置 i 需要调整，记录需要调整的最小位置 i 为 high.
 
@@ -132,7 +132,7 @@ int findUnsortedSubarray(vector<int>& nums) {
 
 
 
-#### 第二版，获得启发，重新写了一遍
+#### 第二版最短无序连续子数组，获得启发，重新写了一遍
 
 
 
@@ -180,7 +180,7 @@ if (nums.size() == 1) return 0;
 
 
 
-#### 第三版，将两个循环改为单一循环，加速了一下
+#### 第三版最短无序连续子数组，将两个循环改为单一循环，加速了一下
 
 执行用时 :28 ms, 在所有 cpp 提交中击败了98.19%的用户
 
@@ -216,7 +216,7 @@ if (nums.size() == 1) return 0;
 
 
 
-[605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/)  也是很不错的题目
+### [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/)  也是很不错的题目
 
 假设你有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花卉不能种植在相邻的地块上，它们会争夺水源，两者都会死去。
 
@@ -410,106 +410,6 @@ int maximumProduct(vector<int>& nums) {
 
 
 
-
-
-### [674. 最长连续递增序列](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)
-
-给定一个未经排序的整数数组，找到最长且**连续**的的递增序列。
-
-**示例 1:**
-
-```
-输入: [1,3,5,4,7]
-输出: 3
-解释: 最长连续递增序列是 [1,3,5], 长度为3。
-尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。 
-```
-
-**示例 2:**
-
-```
-输入: [2,2,2,2,2]
-输出: 1
-解释: 最长连续递增序列是 [2], 长度为1。
-```
-
-**注意：**数组长度不会超过10000。
-
-
-
-#### 第一版，自己写的，很慢啊，比较low
-
-执行用时 :28 ms, 在所有 cpp 提交中击败了14.37%的用户
-
-内存消耗 :25.3 MB, 在所有 cpp 提交中击败了5.21%的用户
-
-```c++
-int findLengthOfLCIS(vector<int>& nums) {
-
-	stack<int>res;
-	size_t maxLen = 0;
-	for (auto& n : nums) {
-		
-		if (res.empty() || n > res.top())//为空或者当前值大于前面一个值
-			res.push(n);
-
-		else//小于等于当前top,千万记得要把这次的值放进去
-		{
-			maxLen = (res.size() > maxLen ? res.size() : maxLen);
-			(stack<int>()).swap(res);
-			res.push(n);
-		}
-		
-	}
-
-	maxLen = (res.size() > maxLen ? res.size() : maxLen);
-	return maxLen;
-
-
-}
-```
-
-
-
-
-
-#### 第二版，自己改进了一下，不过性能还是不太行
-
-执行用时 :16 ms, 在所有 cpp 提交中击败了70.37%的用户
-
-内存消耗 :9.5 MB, 在所有 cpp 提交中击败了47.56%的用户
-
-
-
-```c++
-int findLengthOfLCIS(vector<int>& nums) {
-
-
-	if (nums.empty()) return 0;
-	int temp=nums[0];
-	int maxLen = 0,tempLen=0;
-	for (auto& n : nums) {	
-		if (n > temp)//为空或者当前值大于前面一个值
-		{
-			temp = n;
-			tempLen++;
-		}
-		else//小于等于当前top,千万记得要把这次的值放进去
-		{
-			maxLen = (tempLen > maxLen ? tempLen : maxLen);
-			tempLen = 1;
-			temp = n;		
-		}
-		
-	}
-
-	maxLen = (tempLen > maxLen ? tempLen : maxLen);
-	return maxLen;
-}
-```
-
-
-
 ### [643. 子数组最大平均数 I](https://leetcode-cn.com/problems/maximum-average-subarray-i/)
 
 给定 `n` 个整数，找出平均数最大且长度为 `k` 的连续子数组，并输出该最大平均数。
@@ -641,6 +541,227 @@ double findMaxAverage(vector<int>& nums, int k) {
 
 
 
+
+
+### [665. 非递减数列](https://leetcode-cn.com/problems/non-decreasing-array/) 很好的题
+
+给定一个长度为 `n` 的整数数组，你的任务是判断在**最多**改变 `1` 个元素的情况下，该数组能否变成一个非递减数列。
+
+我们是这样定义一个非递减数列的： 对于数组中所有的 `i` (1 <= i < n)，满足 `array[i] <= array[i + 1]`。
+
+**示例 1:**
+
+```
+输入: [4,2,3]
+输出: True
+解释: 你可以通过把第一个4变成1来使得它成为一个非递减数列。
+```
+
+**示例 2:**
+
+```
+输入: [4,2,1]
+输出: False
+解释: 你不能在只改变一个元素的情况下将其变为非递减数列。
+```
+
+**说明:**  `n` 的范围为 [1, 10,000]。
+
+
+
+
+
+#### 第一版，没做出来，呜呜呜
+
+```c++
+bool checkPossibility(vector<int>& nums) {//4,2,3
+	if (nums.size() <= 2) return true;
+	bool found = false;
+	int minNum = nums[nums.size()-1];
+	for (int i = nums.size()-2; i >=0; --i) {
+
+		minNum = min(minNum, nums[i]);
+		if (nums[i]>minNum && !found) {
+			
+			if (i == nums.size() - 2) {
+				minNum = nums[i];
+				found = true;
+			}
+			else if (nums[i] <= nums[i + 2])
+			{
+				found = true;
+				minNum = nums[i];
+			}
+			else if (i == 0) {
+				return true;
+
+			}
+			else
+				return false;
+		}
+		else if (nums[i] > minNum && found) return false;
+		
+	}
+
+	return true;
+}
+```
+
+
+
+
+
+#### 第二版，看了解析，只能说差一点就解出来了
+
+```
+这道题给了我们一个数组，说我们最多有1次修改某个数字的机会，
+  问能不能将数组变为非递减数组。题目中给的例子太少，不能覆盖所有情况，我们再来看下面三个例子：
+	4，2，3
+	-1，4，2，3
+	2，3，3，2，4
+我们通过分析上面三个例子可以发现，当我们发现后面的数字小于前面的数字产生冲突后，
+[1]有时候需要修改前面较大的数字(比如前两个例子需要修改4)，
+[2]有时候却要修改后面较小的那个数字(比如前第三个例子需要修改2)，
+那么有什么内在规律吗？是有的，判断修改那个数字其实跟再前面一个数的大小有关系，
+首先如果再前面的数不存在，比如例子1，4前面没有数字了，我们直接修改前面的数字为当前的数字2即可。
+而当再前面的数字存在，并且小于当前数时，比如例子2，-1小于2，我们还是需要修改前面的数字4为当前数字2；
+如果再前面的数大于当前数，比如例子3，3大于2，我们需要修改当前数2为前面的数3。
+```
+
+
+
+
+
+执行用时 :32 ms, 在所有 cpp 提交中击败了74.07%的用户
+
+内存消耗 :10.4 MB, 在所有 cpp 提交中击败了70.18%的用户
+
+
+
+```c++
+bool checkPossibility(vector<int>& nums) {//4,2,3
+	if (nums.size() <= 2) return true;
+	int count = 0;
+	for (int i = 1; i <nums.size() &&count<2; ++i) {
+
+		if (nums[i - 1] <= nums[i]) continue;
+		count++;//前一个数大于当前值
+		if (i >= 2 && nums[i - 2] > nums[i])
+			nums[i] = nums[i - 1];
+		else
+			nums[i - 1] = nums[i];
+
+
+	}
+
+	return count<=1;
+}
+```
+
+
+
+
+
+### [674. 最长连续递增序列](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)
+
+给定一个未经排序的整数数组，找到最长且**连续**的的递增序列。
+
+**示例 1:**
+
+```
+输入: [1,3,5,4,7]
+输出: 3
+解释: 最长连续递增序列是 [1,3,5], 长度为3。
+尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。 
+```
+
+**示例 2:**
+
+```
+输入: [2,2,2,2,2]
+输出: 1
+解释: 最长连续递增序列是 [2], 长度为1。
+```
+
+**注意：**数组长度不会超过10000。
+
+
+
+#### 第一版，自己写的，很慢啊，比较low
+
+执行用时 :28 ms, 在所有 cpp 提交中击败了14.37%的用户
+
+内存消耗 :25.3 MB, 在所有 cpp 提交中击败了5.21%的用户
+
+```c++
+int findLengthOfLCIS(vector<int>& nums) {
+
+	stack<int>res;
+	size_t maxLen = 0;
+	for (auto& n : nums) {
+		
+		if (res.empty() || n > res.top())//为空或者当前值大于前面一个值
+			res.push(n);
+
+		else//小于等于当前top,千万记得要把这次的值放进去
+		{
+			maxLen = (res.size() > maxLen ? res.size() : maxLen);
+			(stack<int>()).swap(res);
+			res.push(n);
+		}
+		
+	}
+
+	maxLen = (res.size() > maxLen ? res.size() : maxLen);
+	return maxLen;
+
+
+}
+```
+
+
+
+
+
+#### 第二版，自己改进了一下，不过性能还是不太行
+
+执行用时 :16 ms, 在所有 cpp 提交中击败了70.37%的用户
+
+内存消耗 :9.5 MB, 在所有 cpp 提交中击败了47.56%的用户
+
+
+
+```c++
+int findLengthOfLCIS(vector<int>& nums) {
+
+
+	if (nums.empty()) return 0;
+	int temp=nums[0];
+	int maxLen = 0,tempLen=0;
+	for (auto& n : nums) {	
+		if (n > temp)//为空或者当前值大于前面一个值
+		{
+			temp = n;
+			tempLen++;
+		}
+		else//小于等于当前top,千万记得要把这次的值放进去
+		{
+			maxLen = (tempLen > maxLen ? tempLen : maxLen);
+			tempLen = 1;
+			temp = n;		
+		}
+		
+	}
+
+	maxLen = (tempLen > maxLen ? tempLen : maxLen);
+	return maxLen;
+}
+```
+
+
+
+
+
 ### [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/)
 
 给定一个非空且只包含非负数的整数数组 `nums`, 数组的度的定义是指数组里任一元素出现频数的最大值。
@@ -706,233 +827,6 @@ int findShortestSubArray(vector<int>& nums) {
 	return minLen + 1;
 }
 ```
-
-
-
-
-
-### [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups/)
-
-在一个由小写字母构成的字符串 `S` 中，包含由一些连续的相同字符所构成的分组。
-
-例如，在字符串 `S = "abbxxxxzyy"` 中，就含有 `"a"`, `"bb"`, `"xxxx"`, `"z"` 和 `"yy"` 这样的一些分组。
-
-我们称所有包含大于或等于三个连续字符的分组为较大分组。找到每一个较大分组的起始和终止位置。
-
-最终结果按照字典顺序输出。
-
-**示例 1:**
-
-```
-输入: "abbxxxxzzy"
-输出: [[3,6]]
-解释: "xxxx" 是一个起始于 3 且终止于 6 的较大分组。
-```
-
-**示例 2:**
-
-```
-输入: "abc"
-输出: []
-解释: "a","b" 和 "c" 均不是符合要求的较大分组。
-```
-
-**示例 3:**
-
-```
-输入: "abcdddeeeeaabbbcd"
-输出: [[3,5],[6,9],[12,14]]
-```
-
-**说明:**  `1 <= S.length <= 1000`
-
-
-
-
-
-#### 第一版，自己写的，比较慢
-
-执行用时 :16 ms, 在所有 cpp 提交中击败了35.69%的用户
-
-内存消耗 :9.3 MB, 在所有 cpp 提交中击败了82.42%的用户
-
-
-
-```c++
-vector<vector<int>> largeGroupPositions(string S) {
-	if (S.size() <= 2) return {};
-	vector<vector<int>> res;
-	int len = S.size(), count = 0;
-	char ch;
-	for (int i = 0; i < len; ) {
-
-		if (S[i] == S[i + 1]) {
-			if (S[i + 1] == S[i + 2]) {
-				count = 0;
-				ch = S[i];
-				while (S[i] == ch) {
-					count++;
-					i++;
-				}
-				res.push_back({ i - count,i - 1 });
-			}
-			else
-				i++;
-		}
-		else
-			i++;
-	}
-	return res;
-
-}
-```
-
-
-
-
-
-### [888. 公平的糖果交换](https://leetcode-cn.com/problems/fair-candy-swap/)
-
-爱丽丝和鲍勃有不同大小的糖果棒：`A[i]` 是爱丽丝拥有的第 `i` 块糖的大小，`B[j]` 是鲍勃拥有的第 `j` 块糖的大小。
-
-因为他们是朋友，所以他们想交换一个糖果棒，这样交换后，他们都有相同的糖果总量。*（一个人拥有的糖果总量是他们拥有的糖果棒大小的总和。）*
-
-返回一个整数数组 `ans`，其中 `ans[0]` 是爱丽丝必须交换的糖果棒的大小，`ans[1]` 是 Bob 必须交换的糖果棒的大小。
-
-如果有多个答案，你可以返回其中任何一个。保证答案存在。
-
- 
-
-**示例 1：**
-
-```
-输入：A = [1,1], B = [2,2]
-输出：[1,2]
-```
-
-**示例 2：**
-
-```
-输入：A = [1,2], B = [2,3]
-输出：[1,2]
-```
-
-**示例 3：**
-
-```
-输入：A = [2], B = [1,3]
-输出：[2,3]
-```
-
-**示例 4：**
-
-```
-输入：A = [1,2,5], B = [2,4]
-输出：[5,4]
-```
-
- 
-
-**提示：**
-
-- `1 <= A.length <= 10000`
-- `1 <= B.length <= 10000`
-- `1 <= A[i] <= 100000`
-- `1 <= B[i] <= 100000`
-- 保证爱丽丝与鲍勃的糖果总量不同。
-- 答案肯定存在。
-
-
-
-#### 第一版，自己写的，执行这也太慢了
-
-执行用时 :1224 ms, 在所有 cpp 提交中击败了14.22%的用户
-
-内存消耗 :12 MB, 在所有 cpp 提交中击败了95.49%的用户
-
-```c++
-
- vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
-    int sumA=0, sumB=0;
-	for (auto& a : A) {
-		sumA += a;
-	}
-	for (auto& b : B) {
-		sumB += b;
-	}
-
-	int temp = sumA - sumB > 0 ? sumA - sumB : sumB - sumA;
-	temp = temp / 2;
-	for (auto& a : A) {
-
-		for (auto& b : B) {
-			if (a - b == temp || b - a == temp)
-			{
-				if(sumA - a + b == sumB - b + a)
-					return { a,b };
-			}
-		}
-	}
-	return { 0,0 };
-        
-    }
-```
-
-
-
-
-
-#### 第二版，改进了一下，加一个二分查找，快多了
-
-执行用时 :132 ms, 在所有 cpp 提交中击败了88.39%的用户
-
-内存消耗 :12.2 MB, 在所有 cpp 提交中击败了83.46%的用户
-
-
-
-```c++
-
-vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
-
-	int sumA=0, sumB=0;
-	for (auto& a : A) {
-		sumA += a;
-	}
-	for (auto& b : B) {
-		sumB += b;
-	}
-
-	int b=0,temp = sumA - sumB > 0 ? sumA - sumB : sumB - sumA;
-	temp = temp / 2;
-
-	sort(A.begin(), A.end());
-	sort(B.begin(), B.end());
-
-	for (auto& a : A) {
-
-			if (lower_bound(B.begin(),B.end(),a + temp)!=B.end())
-			{
-				b = *(lower_bound(B.begin(), B.end(), a + temp));
-				if(sumA - a + b == sumB - b + a)
-					return { a,b };
-			}
-			if (lower_bound(B.begin(), B.end(), a - temp) != B.end())
-			{
-		
-				b = *(lower_bound(B.begin(), B.end(), a - temp));
-				if (sumA - a + b == sumB - b + a)
-					return { a,b };
-			}
-	}
-
-	return { 0,0 };
-
-}
-```
-
-
-
-
 
 
 
@@ -1046,310 +940,69 @@ bool isOneBitCharacter(vector<int>& bits) {
 
 
 
-### [989. 数组形式的整数加法](https://leetcode-cn.com/problems/add-to-array-form-of-integer/)  经典，很经典的题目，一步步渐进，直到最优解法
 
 
+### [724. 寻找数组的中心索引](https://leetcode-cn.com/problems/find-pivot-index/)
 
-对于非负整数 `X` 而言，*X* 的*数组形式*是每位数字按从左到右的顺序形成的数组。例如，如果 `X = 1231`，那么其数组形式为 `[1,2,3,1]`。
+给定一个整数类型的数组 `nums`，请编写一个能够返回数组**“中心索引”**的方法。
 
-给定非负整数 `X` 的数组形式 `A`，返回整数 `X+K` 的数组形式。
+我们是这样定义数组**中心索引**的：数组中心索引的左侧所有元素相加的和等于右侧所有元素相加的和。
 
- 
+如果数组不存在中心索引，那么我们应该返回 -1。如果数组有多个中心索引，那么我们应该返回最靠近左边的那一个。
 
-
-
-**示例 1：**
+**示例 1:**
 
 ```
-输入：A = [1,2,0,0], K = 34
-输出：[1,2,3,4]
-解释：1200 + 34 = 1234
+输入: 
+nums = [1, 7, 3, 6, 5, 6]
+输出: 3
+解释: 
+索引3 (nums[3] = 6) 的左侧数之和(1 + 7 + 3 = 11)，与右侧数之和(5 + 6 = 11)相等。
+同时, 3 也是第一个符合要求的中心索引。
 ```
 
-**解释 2：**
+**示例 2:**
 
 ```
-输入：A = [2,7,4], K = 181
-输出：[4,5,5]
-解释：274 + 181 = 455
+输入: 
+nums = [1, 2, 3]
+输出: -1
+解释: 
+数组中不存在满足此条件的中心索引。
 ```
 
-**示例 3：**
+**说明:**
 
-```
-输入：A = [2,1,5], K = 806
-输出：[1,0,2,1]
-解释：215 + 806 = 1021
-```
-
-**示例 4：**
-
-```
-输入：A = [9,9,9,9,9,9,9,9,9,9], K = 1
-输出：[1,0,0,0,0,0,0,0,0,0,0]
-解释：9999999999 + 1 = 10000000000
-```
-
- 
-
-**提示：**
-
-1. `1 <= A.length <= 10000`
-2. `0 <= A[i] <= 9`
-3. `0 <= K <= 10000`
-4. 如果 `A.length > 1`，那么 `A[0] != 0`
-
-
-
-#### 第一版，自己写的,时间和空间都一般
+- `nums` 的长度范围为 `[0, 10000]`。
+- 任何一个 `nums[i]` 将会是一个范围在 `[-1000, 1000]`的整数。
 
 
 
 
 
-执行用时 :180 ms, 在所有 cpp 提交中击败了54.11%的用户
+#### 第一版，这题比想象中的要容易许多啊..
 
-内存消耗 :13.7 MB, 在所有 cpp 提交中击败了39.51%的用户
+执行用时 :20 ms, 在所有 cpp 提交中击败了98.55%的用户
+
+内存消耗 :9.9 MB, 在所有 cpp 提交中击败了77.04%的用户
 
 
 
 ```c++
-vector<int> addToArrayForm(vector<int>& A, int K) { //52134
-	
-	vector<int> temp,res;
-	
-	while (K != 0) {
-
-		temp.push_back(K % 10);
-		K = K / 10;
-	}
-
-	int i = A.size() - 1,j=0;
-	for (; i>=0 && j<temp.size(); --i,++j) {
-		res.push_back(temp[j] + A[i]);	
-	}
-	if (j == temp.size() && i>=0) {
-		for (   ; i >= 0;--i) {		 
-			res.push_back(A[i]);
+    int pivotIndex(vector<int>& nums) {
+    int sum = accumulate(nums.begin(), nums.end(), 0);
+	int temp = 0;
+	for (int i = 0; i < nums.size(); ++i) {
+		if (temp * 2 == sum - nums[i]) {
+			return i;
 		}
-	}
-	else if (i == -1 && j<temp.size())
-	{
-		for ( ; j<temp.size(); ++j) {
-			res.push_back(temp[j]);
-		}
-	}
-
-	for (i = 0; i < res.size(); ++i) {
-		if (res[i] > 9) {
-			res[i] = res[i] - 10;
-			if (i != res.size() - 1) res[i + 1] = res[i + 1] + 1;
-			else
-				res.push_back(1);
-
-		}
+		temp += nums[i];
 
 	}
-
-	reverse(res.begin(), res.end());
-
-	return res;
-}
-
-```
-
-
-
-
-
-#### 第二版，反而越改越差
-
-执行用时 :204 ms, 在所有 cpp 提交中击败了47.70%的用户
-
-内存消耗 :13.8 MB, 在所有 cpp 提交中击败了39.51%的用户
-
-```c++
-  vector<int> addToArrayForm(vector<int>& A, int K) {
-   vector<int> temp;	
-	while (K != 0) {
-
-		temp.push_back(K % 10);
-		K = K / 10;
-	}
-
-	int i = A.size() - 1,j=0;
-	for (; i>=0 && j<temp.size(); --i,++j) {
-		temp[j]=temp[j] + A[i];	
-	}
-
-
-
-	if (j == temp.size() && i>=0) {
-		for (   ; i >= 0;--i) {		 
-			temp.push_back(A[i]);
-		}
-	}
-
-	for (i = 0; i < temp.size(); ++i) {
-		if (temp[i] > 9) {
-			temp[i] = temp[i] - 10;
-			if (i != temp.size() - 1) temp[i + 1] = temp[i + 1] + 1;
-			else
-				temp.push_back(1);
-
-		}
-
-	}
-	reverse(temp.begin(), temp.end());
-
-	return temp;
+	return -1;
+        
     }
 ```
-
-
-
-#### 第三版，又改进了一下，快多了
-
-执行用时 :136 ms, 在所有 cpp 提交中击败了95.79%的用户
-
-内存消耗 :12.3 MB, 在所有 cpp 提交中击败了92.20%的用户
-
-```c++
-    vector<int> addToArrayForm(vector<int>& A, int K) {
-	vector<int> temp;	
-	while (K != 0) {
-
-		temp.push_back(K % 10);
-		K = K / 10;
-	}
-
-	reverse(A.begin(), A.end());
-	size_t i=0;
-	for ( ; i<A.size() && i<temp.size();++i) {
-		A[i]=temp[i] + A[i];
-		if (A[i] > 9 && i != A.size() - 1) {
-			A[i] = A[i] - 10;
-			A[i+ 1] = A[i + 1] + 1;
-		} 
-		else if (A[i] > 9 && i == A.size() - 1) {
-			A[i] = A[i] - 10;
-			A.push_back(1);
-		}
-	}
-
-
-	if (i == temp.size()) {
-	for (   ; i <A.size();++i) {		 
-		if (A[i] > 9 && i != A.size() - 1) {
-			A[i] = A[i] - 10;
-			A[i + 1] = A[i + 1] + 1;
-		}
-		if ( A[i] > 9 && i== A.size() - 1) {
-			A[i] = A[i] - 10;
-			A.push_back(1);
-		}
-		}
-	}
-	else if (i == A.size())
-	{
-		for (; i < temp.size(); ++i) {
-			A.push_back(temp[i]);
-		}
-	}
-	reverse(A.begin(), A.end());
-	return A;
-    }
-```
-
-
-
-
-
-### [849. 到最近的人的最大距离](https://leetcode-cn.com/problems/maximize-distance-to-closest-person/) 好题
-
-在一排座位（ `seats`）中，`1` 代表有人坐在座位上，`0` 代表座位上是空的。
-
-至少有一个空座位，且至少有一人坐在座位上。
-
-亚历克斯希望坐在一个能够使他与离他最近的人之间的距离达到最大化的座位上。
-
-返回他到离他最近的人的最大距离。
-
-**示例 1：**
-
-```
-输入：[1,0,0,0,1,0,1]
-输出：2
-解释：
-如果亚历克斯坐在第二个空位（seats[2]）上，他到离他最近的人的距离为 2 。
-如果亚历克斯坐在其它任何一个空位上，他到离他最近的人的距离为 1 。
-因此，他到离他最近的人的最大距离是 2 。 
-```
-
-**示例 2：**
-
-```
-输入：[1,0,0,0]
-输出：3
-解释： 
-如果亚历克斯坐在最后一个座位上，他离最近的人有 3 个座位远。
-这是可能的最大距离，所以答案是 3 。
-```
-
-**提示：**
-
-1. `1 <= seats.length <= 20000`
-2. `seats` 中只含有 0 和 1，至少有一个 `0`，且至少有一个 `1`。
-
-
-
-#### 第一版，有参考别人
-
-保存首位连续0的个数，和（中间连续0的个数+1）/2，最近进行比较即可
-
-执行用时 :16 ms, 在所有 cpp 提交中击败了74.71%的用户
-
-内存消耗 :10 MB, 在所有 cpp 提交中击败了82.11%的用户
-
-```c++
-int maxDistToClosest(vector<int>& seats) {
-
-	int lowZeroCut=0, highZeroCut = 0,i = 0, len = seats.size();
-	int j = len - 1;
-
-	while (seats[i] == 0 && i < len) {
-		lowZeroCut++;
-		i++;
-	}
-	i++;//i已经等于1了，跳过即可
-
-	while (seats[j] == 0 && j >=0) {
-		highZeroCut++;
-		j--;
-	}
-    //注意这里不可以再像上面一样再跳过j了，还需要他在下面进行一个判断条件
-//中间连续的0的判断依据就是遇到1了即可以判断了，仔细想想
-	highZeroCut = max(lowZeroCut, highZeroCut);//保存此时的最大值
-	lowZeroCut = 0;
-	int cut = 0;
-	while (i <= j) {
-		if (seats[i++] == 0)
-		{
-			cut++;
-		}
-		else {//遇到1了
-			lowZeroCut = max(cut, lowZeroCut);
-			cut = 0;
-		}
-	}
-
-	highZeroCut = max(highZeroCut, (lowZeroCut + 1) / 2);
-	return highZeroCut;
-
-}
-```
-
-
 
 
 
@@ -1428,387 +1081,81 @@ int dominantIndex(vector<int>& nums) {
 
 
 
-### [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)   好题，真的很好的题
+### [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups/)
 
-给你一个由一些多米诺骨牌组成的列表 `dominoes`。
+在一个由小写字母构成的字符串 `S` 中，包含由一些连续的相同字符所构成的分组。
 
-如果其中某一张多米诺骨牌可以通过旋转 `0` 度或 `180` 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。
+例如，在字符串 `S = "abbxxxxzyy"` 中，就含有 `"a"`, `"bb"`, `"xxxx"`, `"z"` 和 `"yy"` 这样的一些分组。
 
-形式上，`dominoes[i] = [a, b]` 和 `dominoes[j] = [c, d]` 等价的前提是 `a==c` 且 `b==d`，或是 `a==d` 且 `b==c`。
+我们称所有包含大于或等于三个连续字符的分组为较大分组。找到每一个较大分组的起始和终止位置。
 
-在 `0 <= i < j < dominoes.length` 的前提下，找出满足 `dominoes[i]` 和 `dominoes[j]` 等价的骨牌对 `(i, j)` 的数量。
-
- 
-
-**示例：**
-
-```
-输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]
-输出：1
-```
-
- 
-
-**提示：**
-
-- `1 <= dominoes.length <= 40000`
-- `1 <= dominoes[i][j] <= 9`
-
-
-
-
-
-#### 第一版，直接遍历，超出时间限制
-
-```c++
-    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
-    int cut = 0;
-	for (int i = 0; i < dominoes.size(); ++i) {
-		for (int j = i + 1; j < dominoes.size(); ++j) {
-			if ((dominoes[i][0] == dominoes[j][0] && dominoes[i][1] == dominoes[j][1]) || (dominoes[i][0] == dominoes[j][1] && dominoes[i][1] == dominoes[j][0]))
-				cut++;
-		}
-	}
-
-	return cut;
-        
-    }
-```
-
-
-
-
-
-#### 第二版，自己定义unordered_map的键值，为其他类型
-
-执行用时 :52 ms, 在所有 cpp 提交中击败了87.56%的用户
-
-内存消耗 :21 MB, 在所有 cpp 提交中击败了100.00%的用户
-
-
-
-实例：https://blog.csdn.net/zhangpiu/article/details/49837387?utm_source=blogxgwz9
-
-
-
-```c++
-struct KEY
-{
-	int minNum;
-	int maxNum;
-
-	KEY(int f, int s) : minNum(f), maxNum(s) {}
-};
-
-struct HashFunc
-{
-	std::size_t operator()(const KEY& key) const
-	{
-		using std::size_t;
-		using std::hash;
-
-		return ((hash<int>()(key.minNum)
-			^ (hash<int>()(key.maxNum) << 1)) >> 1);
-	}
-};
-
-struct EqualKey
-{
-	bool operator () (const KEY& lhs, const KEY& rhs) const
-	{
-		return lhs.minNum == rhs.minNum
-			&& lhs.maxNum == rhs.maxNum;
-	}
-};
-
-int numEquivDominoPairs(vector<vector<int>>& dominoes) {
-
-	unordered_map<KEY,int,HashFunc,EqualKey> unmp;
-
-	int cut = 0;
-	int maxNum=0, minNum=0;
-	for (auto &n:dominoes) {
-		minNum = min(n[0], n[1]);
-		maxNum = max(n[0], n[1]);
-
-		if (unmp.find({ minNum,maxNum }) != unmp.end()) {
-			cut += unmp[{ minNum, maxNum }];
-			unmp[{minNum, maxNum}]++;
-		}
-		else
-			unmp[{minNum,maxNum}]++;
-	}
-
-	return cut;
-}
-```
-
-
-
-#### 第三版，参考别人的，会更快一点了
-
-
-
-执行用时 :48 ms, 在所有 cpp 提交中击败了95.27%的用户
-
-内存消耗 :21.1 MB, 在所有 cpp 提交中击败了100.00%的用户
-
-
-
-```c++
-
-int numEquivDominoPairs(vector<vector<int>>& dominoes) {
-	unordered_map<int, int> ret;
-	int cut = 0,minNum=0,maxNum=0;
-
-	for (auto& a : dominoes) {
-		maxNum = max(a[0], a[1]);
-		minNum = min(a[0], a[1]);
-		if (ret.find(minNum * 10 + maxNum) != ret.end()) {
-			cut += ret[minNum * 10 + maxNum];
-		}
-		ret[minNum * 10 + maxNum] += 1;
-
-	}
-
-	return cut;
-}
-```
-
-
-
-
-
-#### 第四版，别人的写法，化为数学公式来做的
-
-执行用时 :44 ms, 在所有 cpp 提交中击败了97.76%的用户
-
-内存消耗 :21.1 MB, 在所有 cpp 提交中击败了100.00%的用户
-
-
-
-```c++
-int numEquivDominoPairs(vector<vector<int>>& dominoes) {
-        map<int, int> ret;
-        int count = 0;
-        
-        for(int i  = 0; i < dominoes.size(); ++i)
-        {
-            int k = 0;
-            int m = dominoes[i][0];
-            int n = dominoes[i][1];
-            (m > n) ? k = n * 10 + m : k = m * 10 + n;//这种表达式也是可以的
-            ret[k] += 1;
-        }
-        
-        for(auto iter = ret.begin(); iter != ret.end(); ++iter)
-        {
-            count += iter->second * (iter->second - 1) / 2;
-        }
-
-        return count;
-    }
-```
-
-
-
-#### 第五版，结合一下，最快的
-
-执行用时 :40 ms, 在所有 cpp 提交中击败了99.00%的用户
-
-内存消耗 :21 MB, 在所有 cpp 提交中击败了100.00%的用户
-
-
-
-```c++
-int numEquivDominoPairs(vector<vector<int>>& dominoes) {
-
-	unordered_map<int, int> ret;
-	int k = 0, m = 0, n = 0;
-	for (int i = 0; i < dominoes.size(); ++i)
-	{
-		m = dominoes[i][0];
-		n = dominoes[i][1];
-		(m > n) ? k = n * 10 + m : k = m * 10 + n;//这种表达式也是可以的
-		ret[k] += 1;
-	}
-	int count = 0;
-	for (auto &iter:ret)
-	{
-		count += iter.second * (iter.second - 1) / 2;
-	}
-
-	return count;
-}
-```
-
-
-
-
-
-
-
-
-
-### [724. 寻找数组的中心索引](https://leetcode-cn.com/problems/find-pivot-index/)
-
-给定一个整数类型的数组 `nums`，请编写一个能够返回数组**“中心索引”**的方法。
-
-我们是这样定义数组**中心索引**的：数组中心索引的左侧所有元素相加的和等于右侧所有元素相加的和。
-
-如果数组不存在中心索引，那么我们应该返回 -1。如果数组有多个中心索引，那么我们应该返回最靠近左边的那一个。
+最终结果按照字典顺序输出。
 
 **示例 1:**
 
 ```
-输入: 
-nums = [1, 7, 3, 6, 5, 6]
-输出: 3
-解释: 
-索引3 (nums[3] = 6) 的左侧数之和(1 + 7 + 3 = 11)，与右侧数之和(5 + 6 = 11)相等。
-同时, 3 也是第一个符合要求的中心索引。
+输入: "abbxxxxzzy"
+输出: [[3,6]]
+解释: "xxxx" 是一个起始于 3 且终止于 6 的较大分组。
 ```
 
 **示例 2:**
 
 ```
-输入: 
-nums = [1, 2, 3]
-输出: -1
-解释: 
-数组中不存在满足此条件的中心索引。
+输入: "abc"
+输出: []
+解释: "a","b" 和 "c" 均不是符合要求的较大分组。
 ```
 
-**说明:**
+**示例 3:**
 
-- `nums` 的长度范围为 `[0, 10000]`。
-- 任何一个 `nums[i]` 将会是一个范围在 `[-1000, 1000]`的整数。
+```
+输入: "abcdddeeeeaabbbcd"
+输出: [[3,5],[6,9],[12,14]]
+```
+
+**说明:**  `1 <= S.length <= 1000`
 
 
 
 
 
-#### 第一版，这题比想象中的要容易许多啊..
+#### 第一版，自己写的，比较慢
 
-执行用时 :20 ms, 在所有 cpp 提交中击败了98.55%的用户
+执行用时 :16 ms, 在所有 cpp 提交中击败了35.69%的用户
 
-内存消耗 :9.9 MB, 在所有 cpp 提交中击败了77.04%的用户
+内存消耗 :9.3 MB, 在所有 cpp 提交中击败了82.42%的用户
 
 
 
 ```c++
-    int pivotIndex(vector<int>& nums) {
-    int sum = accumulate(nums.begin(), nums.end(), 0);
-	int temp = 0;
-	for (int i = 0; i < nums.size(); ++i) {
-		if (temp * 2 == sum - nums[i]) {
-			return i;
-		}
-		temp += nums[i];
+vector<vector<int>> largeGroupPositions(string S) {
+	if (S.size() <= 2) return {};
+	vector<vector<int>> res;
+	int len = S.size(), count = 0;
+	char ch;
+	for (int i = 0; i < len; ) {
 
-	}
-	return -1;
-        
-    }
-```
-
-
-
-### [941. 有效的山脉数组](https://leetcode-cn.com/problems/valid-mountain-array/)
-
-给定一个整数数组 `A`，如果它是有效的山脉数组就返回 `true`，否则返回 `false`。
-
-让我们回顾一下，如果 A 满足下述条件，那么它是一个山脉数组：
-
-- `A.length >= 3`
-
-- 在 
-
-  ```
-  0 < i < A.length - 1
-  ```
-
-   条件下，存在 
-
-  ```
-  i
-  ```
-
-   使得：
-
-  - `A[0] < A[1] < ... A[i-1] < A[i]`
-  - `A[i] > A[i+1] > ... > A[B.length - 1]`
-
- 
-
-**示例 1：**
-
-```
-输入：[2,1]
-输出：false
-```
-
-**示例 2：**
-
-```
-输入：[3,5,5]
-输出：false
-```
-
-**示例 3：**
-
-```
-输入：[0,3,2,1]
-输出：true
-```
-
- 
-
-**提示：**
-
-1. `0 <= A.length <= 10000`
-2. `0 <= A[i] <= 10000 `
-
-
-
-#### 第一版，自己写的，还可以
-
-执行用时 :28 ms, 在所有 cpp 提交中击败了97.74%的用户
-
-内存消耗 :10.3 MB, 在所有 cpp 提交中击败了81.20%的用户
-
-```c++
-    bool validMountainArray(vector<int>& A) {
-    if (A.size() < 3) return false;
-	if (A[1] <= A[0]) return false;
-	int i = 1, j = A.size() - 1;
-	while (i < j) {
-
-		if (A[i] < A[i + 1] && A[j] < A[j - 1]) {
-			i++;
-			j--;
-		}else	if (A[j] < A[j - 1]) {
-			j--;
-		}
-		else if(A[i] < A[i + 1]) {
-			i++;
+		if (S[i] == S[i + 1]) {
+			if (S[i + 1] == S[i + 2]) {
+				count = 0;
+				ch = S[i];
+				while (S[i] == ch) {
+					count++;
+					i++;
+				}
+				res.push_back({ i - count,i - 1 });
+			}
+			else
+				i++;
 		}
 		else
-			return false;
-
+			i++;
 	}
-	return i==j && j!=A.size()-1;//要预防数组最后一位为最大的情况，也就是j至少要等于A.size()-2
-        
-    }
+	return res;
+
+}
 ```
-
-
-
-
-
-
-
-
 
 
 
@@ -2047,6 +1394,253 @@ int numMagicSquaresInside(vector<vector<int>>& grid) {
 
 
 
+### [849. 到最近的人的最大距离](https://leetcode-cn.com/problems/maximize-distance-to-closest-person/) 好题
+
+在一排座位（ `seats`）中，`1` 代表有人坐在座位上，`0` 代表座位上是空的。
+
+至少有一个空座位，且至少有一人坐在座位上。
+
+亚历克斯希望坐在一个能够使他与离他最近的人之间的距离达到最大化的座位上。
+
+返回他到离他最近的人的最大距离。
+
+**示例 1：**
+
+```
+输入：[1,0,0,0,1,0,1]
+输出：2
+解释：
+如果亚历克斯坐在第二个空位（seats[2]）上，他到离他最近的人的距离为 2 。
+如果亚历克斯坐在其它任何一个空位上，他到离他最近的人的距离为 1 。
+因此，他到离他最近的人的最大距离是 2 。 
+```
+
+**示例 2：**
+
+```
+输入：[1,0,0,0]
+输出：3
+解释： 
+如果亚历克斯坐在最后一个座位上，他离最近的人有 3 个座位远。
+这是可能的最大距离，所以答案是 3 。
+```
+
+**提示：**
+
+1. `1 <= seats.length <= 20000`
+2. `seats` 中只含有 0 和 1，至少有一个 `0`，且至少有一个 `1`。
+
+
+
+#### 第一版，有参考别人
+
+保存首位连续0的个数，和（中间连续0的个数+1）/2，最近进行比较即可
+
+执行用时 :16 ms, 在所有 cpp 提交中击败了74.71%的用户
+
+内存消耗 :10 MB, 在所有 cpp 提交中击败了82.11%的用户
+
+```c++
+int maxDistToClosest(vector<int>& seats) {
+
+	int lowZeroCut=0, highZeroCut = 0,i = 0, len = seats.size();
+	int j = len - 1;
+
+	while (seats[i] == 0 && i < len) {
+		lowZeroCut++;
+		i++;
+	}
+	i++;//i已经等于1了，跳过即可
+
+	while (seats[j] == 0 && j >=0) {
+		highZeroCut++;
+		j--;
+	}
+    //注意这里不可以再像上面一样再跳过j了，还需要他在下面进行一个判断条件
+//中间连续的0的判断依据就是遇到1了即可以判断了，仔细想想
+	highZeroCut = max(lowZeroCut, highZeroCut);//保存此时的最大值
+	lowZeroCut = 0;
+	int cut = 0;
+	while (i <= j) {
+		if (seats[i++] == 0)
+		{
+			cut++;
+		}
+		else {//遇到1了
+			lowZeroCut = max(cut, lowZeroCut);
+			cut = 0;
+		}
+	}
+
+	highZeroCut = max(highZeroCut, (lowZeroCut + 1) / 2);
+	return highZeroCut;
+
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+### [888. 公平的糖果交换](https://leetcode-cn.com/problems/fair-candy-swap/)
+
+爱丽丝和鲍勃有不同大小的糖果棒：`A[i]` 是爱丽丝拥有的第 `i` 块糖的大小，`B[j]` 是鲍勃拥有的第 `j` 块糖的大小。
+
+因为他们是朋友，所以他们想交换一个糖果棒，这样交换后，他们都有相同的糖果总量。*（一个人拥有的糖果总量是他们拥有的糖果棒大小的总和。）*
+
+返回一个整数数组 `ans`，其中 `ans[0]` 是爱丽丝必须交换的糖果棒的大小，`ans[1]` 是 Bob 必须交换的糖果棒的大小。
+
+如果有多个答案，你可以返回其中任何一个。保证答案存在。
+
+ 
+
+**示例 1：**
+
+```
+输入：A = [1,1], B = [2,2]
+输出：[1,2]
+```
+
+**示例 2：**
+
+```
+输入：A = [1,2], B = [2,3]
+输出：[1,2]
+```
+
+**示例 3：**
+
+```
+输入：A = [2], B = [1,3]
+输出：[2,3]
+```
+
+**示例 4：**
+
+```
+输入：A = [1,2,5], B = [2,4]
+输出：[5,4]
+```
+
+ 
+
+**提示：**
+
+- `1 <= A.length <= 10000`
+- `1 <= B.length <= 10000`
+- `1 <= A[i] <= 100000`
+- `1 <= B[i] <= 100000`
+- 保证爱丽丝与鲍勃的糖果总量不同。
+- 答案肯定存在。
+
+
+
+#### 第一版，自己写的，执行这也太慢了
+
+执行用时 :1224 ms, 在所有 cpp 提交中击败了14.22%的用户
+
+内存消耗 :12 MB, 在所有 cpp 提交中击败了95.49%的用户
+
+```c++
+
+ vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+    int sumA=0, sumB=0;
+	for (auto& a : A) {
+		sumA += a;
+	}
+	for (auto& b : B) {
+		sumB += b;
+	}
+
+	int temp = sumA - sumB > 0 ? sumA - sumB : sumB - sumA;
+	temp = temp / 2;
+	for (auto& a : A) {
+
+		for (auto& b : B) {
+			if (a - b == temp || b - a == temp)
+			{
+				if(sumA - a + b == sumB - b + a)
+					return { a,b };
+			}
+		}
+	}
+	return { 0,0 };
+        
+    }
+```
+
+
+
+
+
+#### 第二版，改进了一下，加一个二分查找，快多了
+
+执行用时 :132 ms, 在所有 cpp 提交中击败了88.39%的用户
+
+内存消耗 :12.2 MB, 在所有 cpp 提交中击败了83.46%的用户
+
+
+
+```c++
+
+vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+
+	int sumA=0, sumB=0;
+	for (auto& a : A) {
+		sumA += a;
+	}
+	for (auto& b : B) {
+		sumB += b;
+	}
+
+	int b=0,temp = sumA - sumB > 0 ? sumA - sumB : sumB - sumA;
+	temp = temp / 2;
+
+	sort(A.begin(), A.end());
+	sort(B.begin(), B.end());
+
+	for (auto& a : A) {
+
+			if (lower_bound(B.begin(),B.end(),a + temp)!=B.end())
+			{
+				b = *(lower_bound(B.begin(), B.end(), a + temp));
+				if(sumA - a + b == sumB - b + a)
+					return { a,b };
+			}
+			if (lower_bound(B.begin(), B.end(), a - temp) != B.end())
+			{
+		
+				b = *(lower_bound(B.begin(), B.end(), a - temp));
+				if (sumA - a + b == sumB - b + a)
+					return { a,b };
+			}
+	}
+
+	return { 0,0 };
+
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### [914. 卡牌分组](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)  这也是道好题
@@ -2209,122 +1803,318 @@ bool hasGroupsSizeX(vector<int>& deck) {
 
 
 
+### [941. 有效的山脉数组](https://leetcode-cn.com/problems/valid-mountain-array/)
 
+给定一个整数数组 `A`，如果它是有效的山脉数组就返回 `true`，否则返回 `false`。
 
-### [665. 非递减数列](https://leetcode-cn.com/problems/non-decreasing-array/) 很好的题
+让我们回顾一下，如果 A 满足下述条件，那么它是一个山脉数组：
 
-给定一个长度为 `n` 的整数数组，你的任务是判断在**最多**改变 `1` 个元素的情况下，该数组能否变成一个非递减数列。
+- `A.length >= 3`
 
-我们是这样定义一个非递减数列的： 对于数组中所有的 `i` (1 <= i < n)，满足 `array[i] <= array[i + 1]`。
+- 在 
 
-**示例 1:**
+  ```
+  0 < i < A.length - 1
+  ```
+
+   条件下，存在 
+
+  ```
+  i
+  ```
+
+   使得：
+
+  - `A[0] < A[1] < ... A[i-1] < A[i]`
+  - `A[i] > A[i+1] > ... > A[B.length - 1]`
+
+ 
+
+**示例 1：**
 
 ```
-输入: [4,2,3]
-输出: True
-解释: 你可以通过把第一个4变成1来使得它成为一个非递减数列。
+输入：[2,1]
+输出：false
 ```
 
-**示例 2:**
+**示例 2：**
 
 ```
-输入: [4,2,1]
-输出: False
-解释: 你不能在只改变一个元素的情况下将其变为非递减数列。
+输入：[3,5,5]
+输出：false
 ```
 
-**说明:**  `n` 的范围为 [1, 10,000]。
+**示例 3：**
+
+```
+输入：[0,3,2,1]
+输出：true
+```
+
+ 
+
+**提示：**
+
+1. `0 <= A.length <= 10000`
+2. `0 <= A[i] <= 10000 `
 
 
 
+#### 第一版，自己写的，还可以
 
+执行用时 :28 ms, 在所有 cpp 提交中击败了97.74%的用户
 
-#### 第一版，没做出来，呜呜呜
+内存消耗 :10.3 MB, 在所有 cpp 提交中击败了81.20%的用户
 
 ```c++
-bool checkPossibility(vector<int>& nums) {//4,2,3
-	if (nums.size() <= 2) return true;
-	bool found = false;
-	int minNum = nums[nums.size()-1];
-	for (int i = nums.size()-2; i >=0; --i) {
+    bool validMountainArray(vector<int>& A) {
+    if (A.size() < 3) return false;
+	if (A[1] <= A[0]) return false;
+	int i = 1, j = A.size() - 1;
+	while (i < j) {
 
-		minNum = min(minNum, nums[i]);
-		if (nums[i]>minNum && !found) {
-			
-			if (i == nums.size() - 2) {
-				minNum = nums[i];
-				found = true;
-			}
-			else if (nums[i] <= nums[i + 2])
-			{
-				found = true;
-				minNum = nums[i];
-			}
-			else if (i == 0) {
-				return true;
-
-			}
-			else
-				return false;
+		if (A[i] < A[i + 1] && A[j] < A[j - 1]) {
+			i++;
+			j--;
+		}else	if (A[j] < A[j - 1]) {
+			j--;
 		}
-		else if (nums[i] > minNum && found) return false;
-		
+		else if(A[i] < A[i + 1]) {
+			i++;
+		}
+		else
+			return false;
+
 	}
-
-	return true;
-}
+	return i==j && j!=A.size()-1;//要预防数组最后一位为最大的情况，也就是j至少要等于A.size()-2
+        
+    }
 ```
 
 
 
 
 
-#### 第二版，看了解析，只能说差一点就解出来了
+
+
+### [989. 数组形式的整数加法](https://leetcode-cn.com/problems/add-to-array-form-of-integer/)  经典，很经典的题目，一步步渐进，直到最优解法
+
+
+
+对于非负整数 `X` 而言，*X* 的*数组形式*是每位数字按从左到右的顺序形成的数组。例如，如果 `X = 1231`，那么其数组形式为 `[1,2,3,1]`。
+
+给定非负整数 `X` 的数组形式 `A`，返回整数 `X+K` 的数组形式。
+
+ 
+
+
+
+**示例 1：**
 
 ```
-这道题给了我们一个数组，说我们最多有1次修改某个数字的机会，
-  问能不能将数组变为非递减数组。题目中给的例子太少，不能覆盖所有情况，我们再来看下面三个例子：
-	4，2，3
-	-1，4，2，3
-	2，3，3，2，4
-我们通过分析上面三个例子可以发现，当我们发现后面的数字小于前面的数字产生冲突后，
-[1]有时候需要修改前面较大的数字(比如前两个例子需要修改4)，
-[2]有时候却要修改后面较小的那个数字(比如前第三个例子需要修改2)，
-那么有什么内在规律吗？是有的，判断修改那个数字其实跟再前面一个数的大小有关系，
-首先如果再前面的数不存在，比如例子1，4前面没有数字了，我们直接修改前面的数字为当前的数字2即可。
-而当再前面的数字存在，并且小于当前数时，比如例子2，-1小于2，我们还是需要修改前面的数字4为当前数字2；
-如果再前面的数大于当前数，比如例子3，3大于2，我们需要修改当前数2为前面的数3。
+输入：A = [1,2,0,0], K = 34
+输出：[1,2,3,4]
+解释：1200 + 34 = 1234
 ```
 
+**解释 2：**
+
+```
+输入：A = [2,7,4], K = 181
+输出：[4,5,5]
+解释：274 + 181 = 455
+```
+
+**示例 3：**
+
+```
+输入：A = [2,1,5], K = 806
+输出：[1,0,2,1]
+解释：215 + 806 = 1021
+```
+
+**示例 4：**
+
+```
+输入：A = [9,9,9,9,9,9,9,9,9,9], K = 1
+输出：[1,0,0,0,0,0,0,0,0,0,0]
+解释：9999999999 + 1 = 10000000000
+```
+
+ 
+
+**提示：**
+
+1. `1 <= A.length <= 10000`
+2. `0 <= A[i] <= 9`
+3. `0 <= K <= 10000`
+4. 如果 `A.length > 1`，那么 `A[0] != 0`
+
+
+
+#### 第一版，自己写的,时间和空间都一般
 
 
 
 
-执行用时 :32 ms, 在所有 cpp 提交中击败了74.07%的用户
 
-内存消耗 :10.4 MB, 在所有 cpp 提交中击败了70.18%的用户
+执行用时 :180 ms, 在所有 cpp 提交中击败了54.11%的用户
+
+内存消耗 :13.7 MB, 在所有 cpp 提交中击败了39.51%的用户
 
 
 
 ```c++
-bool checkPossibility(vector<int>& nums) {//4,2,3
-	if (nums.size() <= 2) return true;
-	int count = 0;
-	for (int i = 1; i <nums.size() &&count<2; ++i) {
+vector<int> addToArrayForm(vector<int>& A, int K) { //52134
+	
+	vector<int> temp,res;
+	
+	while (K != 0) {
 
-		if (nums[i - 1] <= nums[i]) continue;
-		count++;//前一个数大于当前值
-		if (i >= 2 && nums[i - 2] > nums[i])
-			nums[i] = nums[i - 1];
-		else
-			nums[i - 1] = nums[i];
+		temp.push_back(K % 10);
+		K = K / 10;
+	}
 
+	int i = A.size() - 1,j=0;
+	for (; i>=0 && j<temp.size(); --i,++j) {
+		res.push_back(temp[j] + A[i]);	
+	}
+	if (j == temp.size() && i>=0) {
+		for (   ; i >= 0;--i) {		 
+			res.push_back(A[i]);
+		}
+	}
+	else if (i == -1 && j<temp.size())
+	{
+		for ( ; j<temp.size(); ++j) {
+			res.push_back(temp[j]);
+		}
+	}
+
+	for (i = 0; i < res.size(); ++i) {
+		if (res[i] > 9) {
+			res[i] = res[i] - 10;
+			if (i != res.size() - 1) res[i + 1] = res[i + 1] + 1;
+			else
+				res.push_back(1);
+
+		}
 
 	}
 
-	return count<=1;
+	reverse(res.begin(), res.end());
+
+	return res;
 }
+
 ```
+
+
+
+
+
+#### 第二版，反而越改越差
+
+执行用时 :204 ms, 在所有 cpp 提交中击败了47.70%的用户
+
+内存消耗 :13.8 MB, 在所有 cpp 提交中击败了39.51%的用户
+
+```c++
+  vector<int> addToArrayForm(vector<int>& A, int K) {
+   vector<int> temp;	
+	while (K != 0) {
+
+		temp.push_back(K % 10);
+		K = K / 10;
+	}
+
+	int i = A.size() - 1,j=0;
+	for (; i>=0 && j<temp.size(); --i,++j) {
+		temp[j]=temp[j] + A[i];	
+	}
+
+
+
+	if (j == temp.size() && i>=0) {
+		for (   ; i >= 0;--i) {		 
+			temp.push_back(A[i]);
+		}
+	}
+
+	for (i = 0; i < temp.size(); ++i) {
+		if (temp[i] > 9) {
+			temp[i] = temp[i] - 10;
+			if (i != temp.size() - 1) temp[i + 1] = temp[i + 1] + 1;
+			else
+				temp.push_back(1);
+
+		}
+
+	}
+	reverse(temp.begin(), temp.end());
+
+	return temp;
+    }
+```
+
+
+
+#### 第三版，又改进了一下，快多了
+
+执行用时 :136 ms, 在所有 cpp 提交中击败了95.79%的用户
+
+内存消耗 :12.3 MB, 在所有 cpp 提交中击败了92.20%的用户
+
+```c++
+    vector<int> addToArrayForm(vector<int>& A, int K) {
+	vector<int> temp;	
+	while (K != 0) {
+
+		temp.push_back(K % 10);
+		K = K / 10;
+	}
+
+	reverse(A.begin(), A.end());
+	size_t i=0;
+	for ( ; i<A.size() && i<temp.size();++i) {
+		A[i]=temp[i] + A[i];
+		if (A[i] > 9 && i != A.size() - 1) {
+			A[i] = A[i] - 10;
+			A[i+ 1] = A[i + 1] + 1;
+		} 
+		else if (A[i] > 9 && i == A.size() - 1) {
+			A[i] = A[i] - 10;
+			A.push_back(1);
+		}
+	}
+
+
+	if (i == temp.size()) {
+	for (   ; i <A.size();++i) {		 
+		if (A[i] > 9 && i != A.size() - 1) {
+			A[i] = A[i] - 10;
+			A[i + 1] = A[i + 1] + 1;
+		}
+		if ( A[i] > 9 && i== A.size() - 1) {
+			A[i] = A[i] - 10;
+			A.push_back(1);
+		}
+		}
+	}
+	else if (i == A.size())
+	{
+		for (; i < temp.size(); ++i) {
+			A.push_back(temp[i]);
+		}
+	}
+	reverse(A.begin(), A.end());
+	return A;
+    }
+```
+
+
+
+
 
 
 
@@ -2407,6 +2197,241 @@ void duplicateZeros(vector<int>& arr) {
 执行用时 :28 ms, 在所有 C++ 提交中击败了90.69%的用户
 
 内存消耗 :9.5 MB, 在所有 C++ 提交中击败了100.00%的用户
+
+
+
+
+
+### [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)   好题，真的很好的题
+
+给你一个由一些多米诺骨牌组成的列表 `dominoes`。
+
+如果其中某一张多米诺骨牌可以通过旋转 `0` 度或 `180` 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。
+
+形式上，`dominoes[i] = [a, b]` 和 `dominoes[j] = [c, d]` 等价的前提是 `a==c` 且 `b==d`，或是 `a==d` 且 `b==c`。
+
+在 `0 <= i < j < dominoes.length` 的前提下，找出满足 `dominoes[i]` 和 `dominoes[j]` 等价的骨牌对 `(i, j)` 的数量。
+
+ 
+
+**示例：**
+
+```
+输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]
+输出：1
+```
+
+ 
+
+**提示：**
+
+- `1 <= dominoes.length <= 40000`
+- `1 <= dominoes[i][j] <= 9`
+
+
+
+
+
+#### 第一版，直接遍历，超出时间限制
+
+```c++
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+    int cut = 0;
+	for (int i = 0; i < dominoes.size(); ++i) {
+		for (int j = i + 1; j < dominoes.size(); ++j) {
+			if ((dominoes[i][0] == dominoes[j][0] && dominoes[i][1] == dominoes[j][1]) || (dominoes[i][0] == dominoes[j][1] && dominoes[i][1] == dominoes[j][0]))
+				cut++;
+		}
+	}
+
+	return cut;
+        
+    }
+```
+
+
+
+
+
+#### 第二版，自己定义unordered_map的键值，为其他类型
+
+执行用时 :52 ms, 在所有 cpp 提交中击败了87.56%的用户
+
+内存消耗 :21 MB, 在所有 cpp 提交中击败了100.00%的用户
+
+
+
+实例：https://blog.csdn.net/zhangpiu/article/details/49837387?utm_source=blogxgwz9
+
+
+
+```c++
+struct KEY
+{
+	int minNum;
+	int maxNum;
+
+	KEY(int f, int s) : minNum(f), maxNum(s) {}
+};
+
+struct HashFunc
+{
+	std::size_t operator()(const KEY& key) const
+	{
+		using std::size_t;
+		using std::hash;
+
+		return ((hash<int>()(key.minNum)
+			^ (hash<int>()(key.maxNum) << 1)) >> 1);
+	}
+};
+
+struct EqualKey
+{
+	bool operator () (const KEY& lhs, const KEY& rhs) const
+	{
+		return lhs.minNum == rhs.minNum
+			&& lhs.maxNum == rhs.maxNum;
+	}
+};
+
+int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+
+	unordered_map<KEY,int,HashFunc,EqualKey> unmp;
+
+	int cut = 0;
+	int maxNum=0, minNum=0;
+	for (auto &n:dominoes) {
+		minNum = min(n[0], n[1]);
+		maxNum = max(n[0], n[1]);
+
+		if (unmp.find({ minNum,maxNum }) != unmp.end()) {
+			cut += unmp[{ minNum, maxNum }];
+			unmp[{minNum, maxNum}]++;
+		}
+		else
+			unmp[{minNum,maxNum}]++;
+	}
+
+	return cut;
+}
+```
+
+
+
+#### 第三版，参考别人的，会更快一点了
+
+
+
+执行用时 :48 ms, 在所有 cpp 提交中击败了95.27%的用户
+
+内存消耗 :21.1 MB, 在所有 cpp 提交中击败了100.00%的用户
+
+
+
+```c++
+int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+	unordered_map<int, int> ret;
+	int cut = 0,minNum=0,maxNum=0;
+
+	for (auto& a : dominoes) {
+		maxNum = max(a[0], a[1]);
+		minNum = min(a[0], a[1]);
+		if (ret.find(minNum * 10 + maxNum) != ret.end()) {
+			cut += ret[minNum * 10 + maxNum];
+		}
+		ret[minNum * 10 + maxNum] += 1;
+
+	}
+
+	return cut;
+}
+```
+
+
+
+
+
+#### 第四版，别人的写法，化为数学公式来做的
+
+执行用时 :44 ms, 在所有 cpp 提交中击败了97.76%的用户
+
+内存消耗 :21.1 MB, 在所有 cpp 提交中击败了100.00%的用户
+
+
+
+```c++
+int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        map<int, int> ret;
+        int count = 0;
+        
+        for(int i  = 0; i < dominoes.size(); ++i)
+        {
+            int k = 0;
+            int m = dominoes[i][0];
+            int n = dominoes[i][1];
+            (m > n) ? k = n * 10 + m : k = m * 10 + n;//这种表达式也是可以的
+            ret[k] += 1;
+        }
+        
+        for(auto iter = ret.begin(); iter != ret.end(); ++iter)
+        {
+            count += iter->second * (iter->second - 1) / 2;
+        }
+
+        return count;
+    }
+```
+
+
+
+#### 第五版，结合一下，最快的
+
+执行用时 :40 ms, 在所有 cpp 提交中击败了99.00%的用户
+
+内存消耗 :21 MB, 在所有 cpp 提交中击败了100.00%的用户
+
+
+
+```c++
+int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+
+	unordered_map<int, int> ret;
+	int k = 0, m = 0, n = 0;
+	for (int i = 0; i < dominoes.size(); ++i)
+	{
+		m = dominoes[i][0];
+		n = dominoes[i][1];
+		(m > n) ? k = n * 10 + m : k = m * 10 + n;//这种表达式也是可以的
+		ret[k] += 1;
+	}
+	int count = 0;
+	for (auto &iter:ret)
+	{
+		count += iter.second * (iter.second - 1) / 2;
+	}
+
+	return count;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
