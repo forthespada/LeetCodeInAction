@@ -1380,9 +1380,7 @@ double findMaxAverage(vector<int>& nums, int k) {
 
 
 
-
-
-![img](https://assets.leetcode-cn.com/aliyun-lc-upload/users/forthespada/avatar_1568598096.png)
+![](https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png)
 
 
 

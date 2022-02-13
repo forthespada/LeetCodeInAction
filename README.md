@@ -1,16 +1,40 @@
-# 这是本人的[力扣]( https://leetcode-cn.com/u/_axiu/ )与[牛客剑指offer]( https://www.nowcoder.com/ta/coding-interviews )的刷题记录~
+# <h1 align="center">LeetCode In Action</h1>
 
-坚持面向offer刷题
+> 坚持面向offer刷题
 
-力扣目前已刷300+，74%+正确率~主刷medium与easy，hard只做经典的 
+![](https://gitee.com/ForthEspada/image/raw/master/image/202202131451204.png)
 
-刷题顺序是按照标签刷，每个标签下又分为easy,medium以及hard三个等级~
+**1、个人背景**
 
-每道题后面都有一些个人的笔记和想法以及需要注意的地方~欢迎fork与star
+2021届计算机应届毕业生，普通双非学校出身，提前一年准备求职学习相关（操作系统、计算机网络、数据库、Linux、C++等）。
 
+我的秋招总结文章：**[双非学生的秋招之路总结（已拿抖音研发岗SP）](https://mp.weixin.qq.com/s/AYe3tnuOmqR4jdDndDGW-Q)**
 
+我的秋招求职笔记：[阿秀的校招求职笔记，适合三年以内的社招党以及校招同学](https://github.com/forthespada/InterviewGuide)
 
-01-数组
+我的前期学习路线：**[适合有基础的科班选手的C++学习路线](http://mp.weixin.qq.com/s?__biz=Mzg2MDU0ODM3MA==&mid=2247483953&idx=1&sn=a0a6b338185bfee8e3538bdfbf58e55c&chksm=ce25fe4cf952775a519c82f0f6e208f5762c97ed11511670ebec6c21cacd575af74e49397969&scene=21#wechat_redirect)  [小白求职版学习路线](https://mp.weixin.qq.com/s/3pcENm2--dVWksNjvtCTcQ)**
+
+我的简历准备情况：[**一份百投百中的计算机校招简历是如何迭代足足26版的？**](https://mp.weixin.qq.com/s/VrTP58lOui3TQzXoRPQPIg)
+
+我的求职面试经验：[**40余场互联网面试浓缩为6000字**](https://mp.weixin.qq.com/s/pRVHwIiKlDGZ0BfZiXZVgA)
+
+**2、秋招成果**
+
+最后顺利拿下**字节跳动SP**、华为、B站、农业银行等六个中大厂的校招offer，最后签约字节，现在是抖音旗下的**后端研发工程师**。
+
+**3、学习思考**
+
+力扣上的题目越来越多，全部刷完基本不现实，所以我在刷题过程中并没有注重**数量**，而更多的注重题的**质量**。
+
+最后选择按照下面这**14**个类别刷题，一共刷了将近**600+**，后来二刷、三刷过后又筛掉了一些，现在只剩下这些比较经典的题。
+
+刷题顺序是按照标签刷，每个标签下又分为easy、medium、hard三个等级~
+
+每道题后面都有一些个人的笔记和想法以及需要注意的地方，欢迎fork & star。
+
+# 力扣
+
+## 01-数组
 
 [easy](标签/01-数组/easy.md)
 
@@ -18,7 +42,7 @@
 
 [hard](标签/01-数组/hard.md)
 
-02-字符串
+## 02-字符串
 
 [easy](标签/02-字符串/easy.md)
 
@@ -26,7 +50,7 @@
 
 [hard](标签/02-字符串/hard.md)
 
-03-链表
+## 03-链表
 
 [easy](标签/03-链表/easy.md)
 
@@ -34,7 +58,7 @@
 
 [hard](标签/03-链表/hard.md)
 
-04-数学
+## 04-数学
 
 [easy](标签/04-数学/easy.md)
 
@@ -42,7 +66,7 @@
 
 [hard](标签/04-数学/hard.md)
 
-05-哈希表
+## 05-哈希表
 
 [easy](标签/05-哈希表/easy.md)
 
@@ -50,7 +74,7 @@
 
 [hard](标签/05-哈希表/hard.md)
 
-06-二分查找
+## 06-二分查找
 
 [easy](标签/06-二分查找/easy.md)
 
@@ -58,7 +82,7 @@
 
 [hard](标签/06-二分查找/hard.md)
 
-07-栈
+## 07-栈
 
 [easy](标签/07-栈/easy.md)
 
@@ -66,7 +90,7 @@
 
 [hard](标签/07-栈/hard.md)
 
-08-双指针
+## 08-双指针
 
 [easy](标签/08-双指针/easy.md)
 
@@ -74,7 +98,7 @@
 
 [hard](标签/08-双指针/hard.md)
 
-09-贪心算法
+## 09-贪心算法
 
 [easy](标签/09-贪心算法/easy.md)
 
@@ -82,7 +106,7 @@
 
 [hard](标签/09-贪心算法/hard.md)
 
-10-回溯算法
+## 10-回溯算法
 
 [easy](标签/10-回溯算法/easy.md)
 
@@ -90,7 +114,7 @@
 
 [hard](标签/10-回溯算法/hard.md)
 
-11-动态规划
+## 11-动态规划
 
 [easy](标签/11-动态规划/easy.md)
 
@@ -98,7 +122,7 @@
 
 [hard](标签/11-动态规划/hard.md)
 
-12-BFS
+## 12-广度优先搜索(BFS)
 
 [easy](标签/12-BFS/easy.md)
 
@@ -106,7 +130,7 @@
 
 [hard](标签/12-BFS/hard.md)
 
-13-DFS
+## 13-深度优先搜索(DFS)
 
 [easy](标签/13-DFS/easy.md)
 
@@ -114,13 +138,15 @@
 
 [hard](标签/13-DFS/hard.md)
 
-14-树
+## 14-树
 
 [easy](标签/14-树/easy.md)
 
 [medium](标签/14-树/medium.md)
 
 [hard](标签/14-树/hard.md)
+
+# 剑指offer
 
 
 
