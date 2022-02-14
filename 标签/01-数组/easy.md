@@ -95,7 +95,7 @@
 
 
 
-#### 第一版最短无序连续子数组，参考别人的思路
+#### 第一版最短无序连续子数组，思路
 
 从左到右循环，记录最大值为 max，若 nums[i] < max, 则表明位置 i 需要调整，记录需要调整的最大位置 i 为 low; 同理，从右到左循环，记录最小值为 min, 若 nums[i] > min, 则表明位置 i 需要调整，记录需要调整的最小位置 i 为 high.
 
@@ -431,7 +431,7 @@ int maximumProduct(vector<int>& nums) {
 
 
 
-#### 第一版，常规遍历，超时
+#### 第一版子数组最大平均数，常规遍历，超时
 
 ```c++
 double aver(vector<int>& res,int k) {
@@ -468,7 +468,7 @@ double findMaxAverage(vector<int>& nums, int k) {
 
 
 
-#### 第二版，改进了一下
+#### 第二版子数组最大平均数，改进了一下
 
 执行用时 :156 ms, 在所有 cpp 提交中击败了76.31%的用户
 
@@ -503,7 +503,7 @@ double findMaxAverage(vector<int>& nums, int k) {
 
 
 
-#### 第三版，改进一点点
+#### 第三版子数组最大平均数，改进一点点
 
 执行用时 :164 ms, 在所有 cpp 提交中击败了70.34%的用户
 
