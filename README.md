@@ -1,9 +1,11 @@
 <p align="center">
   <a href="https://github.com/forthespada/LeetCodeInAction" target="_blank">
-  <img src="https://gitee.com/ForthEspada/image/raw/master/image/202202131510867.png"  alt="loading">
+  <img src="https://oss.interviewguide.cn/img/202203261415377.png"  alt="loading">
   </a>
       <p align="center"><strong>刷题宗旨</strong>：坚定不移的面向offer刷题，一切以拿offer为目标</p>
 </p>
+
+
 
 **1、个人背景**
 
